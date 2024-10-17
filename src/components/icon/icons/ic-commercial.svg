@@ -1,0 +1,31 @@
+<svg
+  width="25"
+  height="24"
+  viewBox="0 0 25 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <g id="ic_commercial" clip-path="url(#clip0_1420_11573)">
+    <path id="Vector" d="M8 6H6.5V9H8V6Z" fill="currentColor" />
+    <path id="Vector_2" d="M8 10.5H6.5V13.5H8V10.5Z" fill="currentColor" />
+    <path id="Vector_3" d="M12.5 6H11V9H12.5V6Z" fill="currentColor" />
+    <path id="Vector_4" d="M12.5 10.5H11V13.5H12.5V10.5Z" fill="currentColor" />
+    <path id="Vector_5" d="M8 15H6.5V18H8V15Z" fill="currentColor" />
+    <path id="Vector_6" d="M12.5 15H11V18H12.5V15Z" fill="currentColor" />
+    <path
+      id="Vector_7"
+      d="M23 10.5C23 10.1022 22.842 9.72064 22.5607 9.43934C22.2794 9.15804 21.8978 9 21.5 9H17V3C17 2.60218 16.842 2.22064 16.5607 1.93934C16.2794 1.65804 15.8978 1.5 15.5 1.5H3.5C3.10218 1.5 2.72064 1.65804 2.43934 1.93934C2.15804 2.22064 2 2.60218 2 3V22.5H23V10.5ZM3.5 3H15.5V21H3.5V3ZM17 21V10.5H21.5V21H17Z"
+      fill="currentColor"
+    />
+  </g>
+  <defs>
+    <clipPath id="clip0_1420_11573">
+      <rect
+        width="24"
+        height="24"
+        fill="currentColor"
+        transform="translate(0.5)"
+      />
+    </clipPath>
+  </defs>
+</svg>

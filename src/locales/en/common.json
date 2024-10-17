@@ -1,0 +1,113 @@
+{
+  "": "",
+  "languages": {
+    "default": "Languages",
+    "en": "ENGLISH"
+  },
+  "languageCodes": {
+    "en": "EN"
+  },
+  "countries": {
+    "global": "Global",
+    "de": "Germany"
+  },
+
+  "equalcare": "Equal Care®",
+  "copyright": "© {year} EQUAL CARE AG",
+  "company_address": "Baarermattstr. 8b, CH-6340\n Baar, Switzerland",
+  "company_email": "mail@equal-care.org",
+
+  "certifications_title": "Certifications of Equal Care®",
+  "certificates_title": "Products and Services Certified by Equal Care®",
+  "companies_title": "Companies Working With Equal Care®",
+
+  "company": "Company",
+  "website": "Website",
+  "address": "Address",
+  "men": "Men",
+  "women": "Women",
+  "homepage": "Home",
+  "certification_criteria": "Certification Criteria",
+  "medical_info_line": "Medical Info Line",
+  "medical_info_email": "Medical Info Email",
+  "indications": "Indications",
+  "description": "Description",
+  "atc_code": "ATC Code",
+  "active_ingredients": "Active Ingredients",
+  "last_updated": "Last Updated",
+  "expand_all": "Expand All",
+  "certificate_badge_title": "Equal Care Certifications",
+  "certificate_badge": "Equal Care Certification®",
+  "more_countries_coming_soon": "More countries coming soon...",
+  "evaluation_criteria": "Evaluation Criteria",
+  "evaluation_items": "Evaluation Items",
+  "evaluation_description": "Evaluation Description",
+  "methodology": "Methodology",
+
+  "our_address": "Our Address",
+  "contact_us": "Contact Us",
+  "follow_us": "Follow Us",
+
+  "certification_type_medication": "Medication",
+  "certification_type_diagnostic_treatment": "Diagnostic / Treatement",
+  "certification_type_digital_diagnostic_treatment": "Digital Diagnostic / Treatement",
+  "certification_type_ai_supported_diagnostic_treatment": "AI-Supported Diagnostic / Treatement",
+  "certification_type_femaletech": "FemTech",
+  "certification_type_maletech": "MaleTech",
+
+  "indications_1_title": "Heart failure with reduced ejection fraction",
+  "indications_1_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
+
+  "indications_2_title": "Type 2 diabetes mellitus",
+  "indications_2_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
+
+  "indications_3_title": "Heart failure with preserved ejection fraction",
+  "indications_3_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
+
+  "indications_4_title": "Renal insufficiency, chronic diseases",
+  "indications_4_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
+
+  "indications_5_title": "Type 2 diabetes mellitus",
+  "indications_5_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
+
+  "indications_6_title": "Heart failure with preserved ejection fraction",
+  "indications_6_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
+
+  "prevalence": "Prevalence",
+  "prevalence_tooltip": "Prevalence",
+  "clinical_study_participation": "Clinical Study Participation",
+  "clinical_study_participation_tooltip": "Clinical Study Participation",
+  "representation_gap": "Representation Gap",
+  "representation_gap_tooltip": "Representation Gap",
+  "eficacy": "Eficacy",
+  "eficacy_tooltip": "Eficacy",
+  "posology": "Posology",
+  "posology_tooltip": "Posology",
+  "difference_in_possible_side_effects": "Difference in Possible Side Effects",
+  "difference_in_possible_side_effects_tooltip": "Difference in Possible Side Effects",
+  "possible_side_effects": "Possible Side Effects",
+  "possible_side_effects_tooltip": "Possible Side Effects",
+
+  "hero_banner_title": "Certified Gender-Equal\nProducts and Services\nin Healthcare",
+
+  "page_home_title": "",
+  "page_home_description": "",
+
+  "page_medication_title": "",
+  "page_medication_description": "",
+
+  "page_diagnostic_treatment_title": "",
+  "page_diagnostic_treatment_description": "",
+
+  "page_digital_diagnostic_treatment_title": "",
+  "page_digital_diagnostic_treatment_description": "",
+
+  "page_ai_supported_diagnostic_treatment_title": "",
+  "page_ai_supported_diagnostic_treatment_description": "",
+
+  "page_femaletech_title": "",
+  "page_femaletech_description": "",
+
+  "page_maletech_title": "",
+  "page_maletech_description": ""
+}

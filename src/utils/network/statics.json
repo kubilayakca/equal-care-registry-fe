@@ -1,0 +1,8 @@
+{
+  "endpoints": {
+    "GET_BANNER": "/api/YeniA/GetCarousel/{language}/{companyId}",
+    "GET_NEWS": "/api/YeniA/GetArticles",
+    "GET_NEWS_DETAILS": "/api/YeniA/GetArticle/{slug}",
+    "SUBMIT_FORM": "/api/YeniA/Contact"
+  }
+}
