@@ -54,13 +54,13 @@ export const Header = ({
             <Logo variant={variant === 'dark' ? 'light' : 'dark'} />
           </Link>
           <div className='hidden md:flex md:gap-2'>
-            <CountrySelector />
-            <LanguageSelector />
+            {/* <CountrySelector />
+            <LanguageSelector /> */}
           </div>
 
           <div className='md:hidden'>
             <IconButton
-              icon='menu'
+              icon={isDrawerOpen ? 'close-large' : 'menu'}
               variant='tertiary'
               className='px-6'
               onClick={toggleDrawer}

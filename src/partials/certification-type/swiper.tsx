@@ -175,9 +175,9 @@ const Item = ({
           selected ? 'light' : 'dark'
         }.svg`}
         alt=''
-        width={0}
-        height={0}
-        className='h-10 w-auto'
+        width={type === CERTIFICATION_TYPES.maleTech ? 40 : 26}
+        height={40}
+        priority
       />
       {label}
     </Link>

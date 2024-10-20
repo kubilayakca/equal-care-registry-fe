@@ -49,7 +49,7 @@ export const Button = ({
       }`;
     }
     if (variant === 'green') {
-      return `text-gold-100 border border-gold-100 ${
+      return `text-white border border-green-500 bg-green-500 rounded ${
         forwardEffect
           ? 'transition-transform hover:translate-x-2 duration-300 will-change-transform'
           : ''

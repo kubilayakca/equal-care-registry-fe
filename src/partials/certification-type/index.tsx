@@ -32,6 +32,7 @@ export const CertificationType = ({
               alt=''
               width={128}
               height={128}
+              priority
             />
             <div className='h-8' />
             <h1 className='heading-05-400 text-blue2'>
