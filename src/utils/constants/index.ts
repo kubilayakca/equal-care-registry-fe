@@ -87,12 +87,17 @@ const HERMAID_COMPANY = {
   medicalInfoEmail: 'anne@hermaid.me',
 };
 
-
+export const enum TargetGender {
+  MALE='male',
+  FEMALE='female',
+  BOTH='both',
+}
 const HERMAID_CERTIFICATE = {
   name: 'herMaid Platform for Female Health',
   slug: 'hermaid-platform-for-female-health',
   image: '',
   type: 'FemTech',
+  targetGender: TargetGender.FEMALE,
   description: 'herMaid is a health service for companies that supports your employees with health issues that are often overlooked.',
   company: HERMAID_COMPANY,
   ingredients: [],
@@ -147,6 +152,7 @@ const Atorvastatin_CERT = {
   slug: 'atorvastatin-hexal',
   image: '',
   type: 'medication',
+  targetGender: TargetGender.BOTH,
   description:
     'Atorvastatin is a medicine used to treat hypercholesterolemia and to prevent cardiovascular diseases.',
   company: HEXAL_AG_COMPANY,
@@ -169,6 +175,7 @@ const PIPRA_CERT = {
   slug: 'pipra',
   image: '',
   type: 'Preoperative risk assessment tool',
+  targetGender: TargetGender.BOTH,
   description:
     'Preoperative risk assessment tool, to assess the risk of a patient developing postoperative delirium. The test uses standard medical data and provides an immediate score-based risk assessment.',
   company: PIPRA_COMPANY,
@@ -291,6 +298,7 @@ const CAMZYOS_CERT = {
   slug: 'camzyos-hard-capsules',
   image: '',
   type: 'medication',
+  targetGender: TargetGender.BOTH,
   description:
     'CAMZYOS is used in adult patients to treat symptomatic (New York Heart Association classification, NYHA, class II – III) hypertrophic obstructive cardiomyopathy',
   company: Bristol_Myers_COMPANY,
@@ -374,6 +382,7 @@ const CardioExplorerCert = {
   slug: 'cardio-explorer',
   image: '',
   type: 'AI-supported test for coronary heart disease.',
+  targetGender: TargetGender.BOTH,
   description:
     'Cardio Explorer is a non-invasive test that detects life-threatening narrowing of the coronary arteries (coronary artery disease).',
   company: Exploris_Health_AG_COMPANY,
@@ -426,6 +435,7 @@ const MEDICSTREAM_CERT = {
   slug: 'medicstream-platform',
   image: '',
   type: 'Digital',
+  targetGender: TargetGender.BOTH,
   description:
     'medicstream is a digital platform that allows healthcare professionals to share individualizes content with their patients',
   company: MEDICSTREAM_COMPANY,
@@ -436,63 +446,65 @@ const MEDICSTREAM_CERT = {
       indicationRows: [
         {
           column: {label: 'gender_distribution', tooltip: 'gender_distribution_tooltip'},
-          values: [{column: 'men', type: 'number', value: 49, align: 'right'},{column: 'women', type: 'number', value: 51, align: 'left', bg: 'dark'}]
+          values: [
+            {column: 'men', type: 'number', value: 49, align: 'right'},
+            {column: 'women', type: 'number', value: 51, align: 'left', bg: 'dark'}
+          ]
         },
         {
           column: {label: 'study_participation', tooltip: 'study_participation_tooltip'},
-          values: [{column: 'men', type: 'number', value: 49, align: 'right'},{column: 'women', type: 'number', value: 51, align: 'left', bg: 'dark'}]
+          values: [
+            {column: 'men', type: 'number', value: 49, align: 'right'},
+            {column: 'women', type: 'number', value: 51, align: 'left', bg: 'dark'}
+          ]
         },
         {
           column: {label: 'efficacy', tooltip: 'efficacy_tooltip'},
-          values: [{column: 'men', type: 'number', value: 0, align: 'left'},{column: 'women', type: 'number', value:0, align: 'left', bg: 'dark'}]
+          values: [
+            {column: 'men', type: 'text', content: 'Not Applicable', align: 'left'},
+            {column: 'women', type: 'text', content: 'Not Applicable', align: 'left', bg: 'dark'}
+          ]
         },
         {
           column: {label: 'functionality', tooltip: 'functionality_tooltip'},
           values: [
-            {column: 'men', type: 'text', content: `medicstream allows to share curated digital medical content from health practitioners to patient on three layers. The highest layer of a library would allow to create gender-specific libraries per medical field or a library with gender medicine as own topic. Within a library the content is structured by indication, also offering the possibility to create gender-specific indications. Indications also can be structured into chapters also with the possibility to have gender-specific content within.`, align: 'left'},
-            {column: 'women', type: 'text', content:'', align: 'left', bg: 'dark'}
+            {column: 'men', span: 2, type: 'text', content: `medicstream allows to share curated digital medical content from health practitioners to patient on three layers. The highest layer of a library would allow to create gender-specific libraries per medical field or a library with gender medicine as own topic. Within a library the content is structured by indication, also offering the possibility to create gender-specific indications. Indications also can be structured into chapters also with the possibility to have gender-specific content within.`, align: 'left'}
           ]
         },
         {
           column: {label: 'personalization', tooltip: 'personalization_tooltip'},
           values: [
-            {column: 'men', type: 'text', content: `medicstream’s core value is the enablement of personalized health content curated by healthcare professionals for the patient. Therefore, the possibilities of personalization are given to a maximum degree.`, align: 'left'},
-            {column: 'women', type: 'text', content:'', align: 'left', bg: 'dark'}
+            {column: 'men', span: 2, type: 'text', content: `medicstream’s core value is the enablement of personalized health content curated by healthcare professionals for the patient. Therefore, the possibilities of personalization are given to a maximum degree.`, align: 'left'}
           ]
         },
         {
           column: {label: 'accessibility', tooltip: 'accessibility_tooltip'},
           values: [
-            {column: 'men', type: 'text', content: `To be able to benefit from medicstream the patient needs an internet connected device and an email address. medicstream is free of charge for patients. The patient individual content is accessible at any time. These are the lowest possible prerequisites for digital interventions. Therefore the accessibility is high for men and women. The most relevant barrier to accessibility is the dependency on the healthcare professional to provide the individualizes content to the patient. `, align: 'left'},
-            {column: 'women', type: 'text', content:'', align: 'left', bg: 'dark'}
+            {column: 'men', span: 2, type: 'text', content: `To be able to benefit from medicstream the patient needs an internet connected device and an email address. medicstream is free of charge for patients. The patient individual content is accessible at any time. These are the lowest possible prerequisites for digital interventions. Therefore the accessibility is high for men and women. The most relevant barrier to accessibility is the dependency on the healthcare professional to provide the individualizes content to the patient. `, align: 'left'}
           ]
         },
         {
           column: {label: 'affordability', tooltip: 'affordability_tooltip'},
           values: [
-            {column: 'men', type: 'text', content: `medicstream is a cost-effective plattform that …..`, align: 'left'},
-            {column: 'women', type: 'text', content:'', align: 'left', bg: 'dark'}
+            {column: 'men', span: 2, type: 'text', content: `medicstream is a cost-effective platform that is free of charge for the patient.`, align: 'left'}
           ]
         },
         {
           column: {label: 'possible_side_effects', tooltip: 'possible_side_effects_tooltip'},
           values: [
-            {column: 'men', type: 'text', content: `No known side effects.`, align: 'left'},
-            {column: 'women', type: 'text', content:'', align: 'left', bg: 'dark'}
+            {column: 'men', span: 2, type: 'text', content: `No known side effects.`, align: 'left'}
           ]
         },
         {
           column: {label: 'regulatory_compliance', tooltip: 'regulatory_compliance_tooltip'},
           values: [
-            {column: 'men', type: 'text', content: `medicstream is GDPR conform. The personalize access to the patient individual content allows privacy for the patient. Ethics and privacy are given equally for men and women.`, align: 'left'},
-            {column: 'women', type: 'text', content:'', align: 'left', bg: 'dark'}
+            {column: 'men', span: 2, type: 'text', content: `medicstream is GDPR conform. The personalize access to the patient individual content allows privacy for the patient. Ethics and privacy are given equally for men and women.`, align: 'left'}
           ]
         },
         {
           column: {label: 'scientific_evidence', tooltip: 'scientific_evidence_tooltip'},
           values: [
-            {column: 'men', type: 'text', content: `Patient individual content provision has positive impact on health competence, psychosocial health outcomes and compliance.`, align: 'left'},
-            {column: 'women', type: 'text', content:'', align: 'left', bg: 'dark'}
+            {column: 'men', span: 2, type: 'text', content: `Patient individual content provision has positive impact on health competence, psychosocial health outcomes and compliance.`, align: 'left'}
           ]
         },
       ]

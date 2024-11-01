@@ -10,6 +10,7 @@ import {
 import { Icon } from '@/components/icon';
 import { InfoTooltip } from '../info-tooltip';
 import { SectionHeader } from '@/components/section-header';
+import { TargetGender } from '@/utils/constants';
 
 export const Details = ({
   certificate,
@@ -38,16 +39,21 @@ export const Details = ({
               initialEntered={i === 0}
               number={i + 1}
             >
-              <div className='pl-4 md:pl-10 py-2.5 body-m-400 text-blue-85 px-6'>
+              {/* <div className='pl-4 md:pl-10 py-2.5 body-m-400 text-blue-85 px-6'>
                 <span className='text-blue-2'>{t('description')}: </span>
                 {t(indication.description)}
-              </div>
+              </div> */}
               <div className='pl-4 md:pl-10 px-4 md:px-6 pt-5 pb-10 lg:pl-[3.75rem] grid grid-cols-[max-content,_1fr] lg:grid-cols-[max-content,_1fr,_1fr]'>
                 <div className='pr-10 max-lg:hidden' />
-                <div className='max-lg:hidden bg-blue-1 h-[3.75rem] flex items-center justify-center text-white body-m-500 rounded-tl-lg'>
-                  {t('men')}
-                </div>
-                <div className='max-lg:hidden bg-blue-2 h-[3.75rem] flex items-center justify-center text-white body-m-500 rounded-tr-lg'>
+                
+                {
+                  certificate.targetGender === 'both' && (
+                    <div className='max-lg:hidden bg-blue-1 h-[3.75rem] flex items-center justify-center text-white body-m-500 rounded-tl-lg'>
+                      {t('men')}
+                    </div> 
+                )}
+                
+                <div className={`max-lg:hidden bg-blue-2 h-[3.75rem] flex items-center justify-center text-white body-m-500 rounded-tr-lg ${ certificate.targetGender === TargetGender.FEMALE ? 'lg:col-span-2' : null }`}>
                   {t('women')}
                 </div>
 
@@ -158,7 +164,7 @@ const IndicationValue = ({
                   } ${align === 'right' ? 'ml-auto' : 'max-lg:ml-auto'}`}
                   style={{
                     width: `${value}%`,
-                    minWidth: '3rem',
+                    minWidth: '4.5rem',
                   }}
                 >
                   {value}%
