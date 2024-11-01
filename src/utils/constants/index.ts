@@ -191,7 +191,10 @@ const PIPRA_CERT = {
       indicationRows: [
         {
           column: {label: 'prevalence', tooltip: 'prevalence_tooltip'},
-          values: [{column: 'men', type: 'number', value: 18, align: 'right',bg: 'light'},{column: 'women', type: 'number', value: 18, bg: 'dark',align: 'left'}]
+          values: [
+            {column: 'men', type: 'text', content: '18%', align: 'right',bg: 'light', alignContent: 'center'},
+            {column: 'women', type: 'text', content: '18%', align: 'left', bg: 'dark', alignContent: 'center'}
+          ]
         },
         {
           column: {label: 'gender_distribution', tooltip: 'gender_distribution_tooltip'},
@@ -320,7 +323,10 @@ const CAMZYOS_CERT = {
       indicationRows: [
         {
           column: {label: 'prevalence', tooltip: 'prevalence_tooltip'},
-          values: [{column: 'men', type: 'number', value: 0.00722, align: 'right',bg: 'light'},{column: 'women', type: 'number', value: 0.00405, bg: 'dark',align: 'left'}]
+          values: [
+            {column: 'men', type: 'text', content: '0.00722%', align: 'right',bg: 'light',alignContent: 'center'},
+            {column: 'women', type: 'text', content: '0.00405%', bg: 'dark',align: 'left',  alignContent: 'center'}
+          ]
         },
         {
           column: {label: 'gender_distribution', tooltip: 'gender_distribution_tooltip'},
@@ -394,7 +400,10 @@ const CardioExplorerCert = {
       indicationRows: [
         {
           column: {label: 'prevalence', tooltip: 'prevalence_tooltip'},
-          values: [{column: 'men', type: 'number', value: 1.79, align: 'right',bg: 'light'},{column: 'women', type: 'number', value: 1.52, bg: 'dark',align: 'left'}]
+          values: [
+            {column: 'men', type: 'text', content: '1.79%', align: 'right',bg: 'light', alignContent: 'center'},
+            {column: 'women', type: 'text', content: '1.52%', bg: 'dark',align: 'left', alignContent: 'center'}
+          ]
         },
         {
           column: {label: 'gender_distribution', tooltip: 'gender_distribution_tooltip'},

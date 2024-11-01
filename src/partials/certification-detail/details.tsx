@@ -80,6 +80,7 @@ export const Details = ({
                                 align={val.align as any}
                                 representationGap={val.representationGap as any}
                                 showRepresentationGapLabel={val.showRepresentationGapLabel as any}
+                                alignContent={val.alignContent as any}
                               />
                             )
                           })
@@ -123,6 +124,7 @@ const IndicationValue = ({
   representationGap,
   showRepresentationGapLabel,
   span = 1,
+  alignContent,
 }: {
   type?: 'text' | 'number';
   content?: string;
@@ -133,6 +135,7 @@ const IndicationValue = ({
   representationGap?: number
   showRepresentationGapLabel?: boolean
   span?: number;
+  alignContent?: 'center';
 }) => {
   const t = useTranslations();
 
@@ -153,7 +156,9 @@ const IndicationValue = ({
           }
           ${
           type === 'number' ? 'py-2.5' : 'py-3 px-4'
-        } ${column === 'men' ? 'max-lg:border-t' : ''}`}
+        } ${column === 'men' ? 'max-lg:border-t' : ''}
+          ${alignContent === 'center' ? 'justify-center' : ''}  
+        `}
       >
         {type === 'number' && value && (
           <div  className='w-full'>
@@ -164,7 +169,7 @@ const IndicationValue = ({
                   } ${align === 'right' ? 'ml-auto' : 'max-lg:ml-auto'}`}
                   style={{
                     width: `${value}%`,
-                    minWidth: '4.5rem',
+                    minWidth: '3rem',
                   }}
                 >
                   {value}%
