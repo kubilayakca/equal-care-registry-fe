@@ -49,10 +49,13 @@ export const Header = ({
           variant === 'dark' ? 'bg-blue-2' : 'bg-white'
         }`}
       >
-        <div className='eq-container flex justify-between'>
+        <div className='eq-container flex items-center'>
           <Link href={ROUTES.root}>
-            <Logo variant={variant === 'dark' ? 'light' : 'dark'} />
+            <Logo variant={variant === 'dark' ? 'light' : 'dark'} /> 
           </Link>
+          <div className='text-blue-2 heading-04-400 m-4 pl-4 border-l border-blue-20'>
+            Registry
+            </div>
           <div className='hidden md:flex md:gap-2'>
             {/* <CountrySelector />
             <LanguageSelector /> */}
@@ -195,7 +198,7 @@ export const Header = ({
                       className='h-8 w-8'
                       alt=''
                     />
-                    {t('certification_type_femaletech')}
+                    {t('certification_type_femtech')}
                   </Link>
                   <Link
                     href={ROUTES.certificateTypeMaleTech}
@@ -272,11 +275,11 @@ export const HeaderWrapper = () => {
       pathname === ROUTES.certificateTypeFemaleTech ||
       pathname === ROUTES.certificateTypeMaleTech
     ) {
-      return 'dark';
+      return 'light';
     }
 
     return 'light';
   }, [pathname]);
 
-  return <Header variant={headerVariant} />;
+  return <Header variant={headerVariant as any} />;
 };

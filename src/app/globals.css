@@ -246,6 +246,10 @@ body {
   }
 }
 
+.banner-bg {
+  background: linear-gradient(68deg, #13B89C 0%, #042941 124.87%);
+}
+
 input {
   border-radius: 0;
 }

@@ -37,7 +37,7 @@ export const NotFoundPage = () => {
           <Image
             fill
             src='/sketch.jpg'
-            alt='Equal Care Sketch'
+            alt='EQUAL CARE Sketch'
             className='object-cover'
           />
         </div>

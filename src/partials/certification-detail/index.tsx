@@ -2,8 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import { CERTIFICATES, ICON_MAPPING } from '@/utils/constants';
-import { InfoTooltip } from '../info-tooltip';
-import { format } from 'date-fns';
 import { Chip } from '@/components/chip';
 import { Badge } from './badge';
 import { Company } from './company';
@@ -76,29 +74,36 @@ const CertificateItemCard = ({ item }: { item: (typeof CERTIFICATES)[0] }) => {
               {item.company.name}
             </NextLink>
           </div>
-          <div className='body-l-500 text-blue-2'>{t('atc_code')}:</div>
+          {/* <div className='body-l-500 text-blue-2'>{t('atc_code')}:</div>
           <div className='text-gray-500 body-m-400 flex items-center gap-2'>
             <div className='pt-0.5'>{item.atc.code}</div>
             <div>
               <InfoTooltip text={item.atc.description} />
             </div>
-          </div>
-          <div className='body-l-500 text-blue-2'>
-            {t('active_ingredients')}:
-          </div>
-          <div className='flex gap-2 flex-wrap'>
-            {item.ingredients.map((ing, i) => {
-              return (
-                <Chip key={i} icon={ing.icon}>
-                  {ing.name}
-                </Chip>
-              );
-            })}
-          </div>
-          <div className='body-l-500 text-blue-2'>{t('last_updated')}:</div>
-          <div className='text-gray-500 body-m-400'>
+          </div> */}
+          {/* @ts-ignore */} 
+          {item.ingredients?.length > 0 && 
+          (
+            <>
+              <div className='body-l-500 text-blue-2'>
+                {t('active_ingredients')}:
+              </div>
+              <div className='flex gap-2 flex-wrap'>
+                {/* @ts-ignore */} 
+                {item.ingredients.map((ing, i) => {
+                  return (
+                    <Chip key={i} icon={ing.icon}>
+                      {ing.name}
+                    </Chip>
+                  );
+                })}
+              </div>
+            </>
+          )}
+          {/* <div className='body-l-500 text-blue-2'>{t('last_updated')}:</div> */}
+          {/* <div className='text-gray-500 body-m-400'>
             {format(new Date(item.lastUpdated), 'dd MMM yyyy')}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

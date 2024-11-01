@@ -1,6 +1,5 @@
 'use client';
 
-import { CERTIFICATES, INDICATIONS } from '@/utils/constants';
 import { useTranslations } from 'next-intl';
 import {
   AccordionItemProps,
@@ -15,7 +14,7 @@ import { SectionHeader } from '@/components/section-header';
 export const Details = ({
   certificate,
 }: {
-  certificate: (typeof CERTIFICATES)[0];
+  certificate: any;
 }) => {
   const t = useTranslations();
   const providerValue = useAccordionProvider({
@@ -31,7 +30,7 @@ export const Details = ({
         // Forward the `providerValue` directly to `ControlledAccordion`
         providerValue={providerValue}
       >
-        {INDICATIONS.map((indication, i) => {
+        {certificate.indications.map((indication:any, i: number) => {
           return (
             <AccordionItem
               key={i}
@@ -52,86 +51,37 @@ export const Details = ({
                   {t('women')}
                 </div>
 
-                <IndicationColumn
-                  label={t('prevalence')}
-                  tooltip={t('prevalence_tooltip')}
-                />
-                <IndicationValue
-                  column='men'
-                  type='number'
-                  value={55}
-                  align='right'
-                />
-                <IndicationValue
-                  column='women'
-                  type='number'
-                  value={45}
-                  bg='dark'
-                />
-
-                <IndicationColumn
-                  label={t('clinical_study_participation')}
-                  tooltip={t('clinical_study_participation_tooltip')}
-                />
-                <IndicationValue
-                  column='men'
-                  type='number'
-                  value={76}
-                  align='right'
-                />
-                <IndicationValue
-                  column='women'
-                  type='number'
-                  value={24}
-                  bg='dark'
-                />
-
-                <IndicationColumn
-                  label={t('representation_gap')}
-                  tooltip={t('representation_gap_tooltip')}
-                />
-                <IndicationValue
-                  column='men'
-                  content='Risk reduction of cardiovascular death and hospitalization due to heart failure in average by 25%.'
-                />
-                <IndicationValue
-                  column='women'
-                  content='Risk reduction of cardiovascular death and hospitalization due to heart failure in average by 15%.'
-                />
-
-                <IndicationColumn
-                  label={t('eficacy')}
-                  tooltip={t('eficacy_tooltip')}
-                />
-                <IndicationValue
-                  column='men'
-                  content='The recommended dose is 10 mg empagliflozin once daily.'
-                />
-                <IndicationValue
-                  column='women'
-                  content='The recommended dose is 10 mg empagliflozin once daily.'
-                />
-
-                <IndicationColumn
-                  label={t('posology')}
-                  tooltip={t('posology_tooltip')}
-                />
-                <IndicationValue column='men' />
-                <IndicationValue column='women' />
-
-                <IndicationColumn
-                  label={t('difference_in_possible_side_effects')}
-                  tooltip={t('difference_in_possible_side_effects_tooltip')}
-                />
-                <IndicationValue column='men' />
-                <IndicationValue column='women' />
-
-                <IndicationColumn
-                  label={t('possible_side_effects')}
-                  tooltip={t('possible_side_effects_tooltip')}
-                />
-                <IndicationValue column='men' />
-                <IndicationValue column='women' />
+                {
+                  indication.indicationRows.map((row:any, i:number) => {
+                    return (
+                      <>
+                        <IndicationColumn
+                          key={i}
+                          label={t(row.column.label)}
+                          tooltip={t(row.column.tooltip)}
+                        />
+                        {
+                          row.values.map((val:any, j:number) => {
+                            return (
+                              <IndicationValue
+                                span={val.span as any}
+                                key={j}
+                                column={val.column as any}
+                                type={val.type as any}
+                                value={val.value as any}
+                                content={val.content as any}
+                                bg={val.bg as any}
+                                align={val.align as any}
+                                representationGap={val.representationGap as any}
+                                showRepresentationGapLabel={val.showRepresentationGapLabel as any}
+                              />
+                            )
+                          })
+                        } 
+                      </>
+                    )
+                  })
+                }
               </div>
             </AccordionItem>
           );
@@ -164,13 +114,19 @@ const IndicationValue = ({
   bg = 'light',
   align = 'left',
   column,
+  representationGap,
+  showRepresentationGapLabel,
+  span = 1,
 }: {
   type?: 'text' | 'number';
   content?: string;
   value?: number;
   bg?: 'light' | 'dark';
   align?: 'left' | 'right';
-  column: 'men' | 'women';
+  column: 'men' | 'women' | 'both';
+  representationGap?: number
+  showRepresentationGapLabel?: boolean
+  span?: number;
 }) => {
   const t = useTranslations();
 
@@ -185,20 +141,50 @@ const IndicationValue = ({
       </div>
 
       <div
-        className={`border-b border-r border-gray-100 flex bg-green-50 ${
+        className={`border-b border-r border-gray-100 flex bg-green-50 
+          ${
+            span === 1 ? 'lg:col-span-1' : 'lg:col-span-2'
+          }
+          ${
           type === 'number' ? 'py-2.5' : 'py-3 px-4'
         } ${column === 'men' ? 'max-lg:border-t' : ''}`}
       >
         {type === 'number' && value && (
-          <div
-            className={`body-m-400 text-blue-85 text-white h-10 flex items-center justify-center ${
-              bg === 'light' ? 'bg-green-500' : 'bg-green-800'
-            } ${align === 'right' ? 'ml-auto' : 'max-lg:ml-auto'}`}
-            style={{
-              width: `${value}%`,
-            }}
-          >
-            {value}%
+          <div  className='w-full'>
+            <div className='w-full'>
+                <div
+                  className={`body-m-400 text-blue-85 text-white h-10 flex items-center justify-center ${
+                    bg === 'light' ? 'bg-green-500' : 'bg-green-800'
+                  } ${align === 'right' ? 'ml-auto' : 'max-lg:ml-auto'}`}
+                  style={{
+                    width: `${value}%`,
+                    minWidth: '3rem',
+                  }}
+                >
+                  {value}%
+                </div>
+            </div>
+            {showRepresentationGapLabel && (
+              <div
+                className={`text-blue-85 m-2 ${align === 'right' ? 'text-right' : 'max-lg:ml-auto'}`}
+                >
+                Representation Gap
+              </div>
+            )}
+            
+            {representationGap && (
+              <div
+                className={`body-m-400 text-blue-85 text-white h-10 flex items-center justify-center bg-gray-500
+                } ${align === 'right' ? 'ml-auto' : 'max-lg:ml-auto'}`}
+                style={{
+                width: `${(Math.abs(representationGap))}%`,
+                minWidth: '2rem',
+              }}
+              >
+                {representationGap}%
+              </div>
+            )}
+            
           </div>
         )}
         {type === 'text' && content && (

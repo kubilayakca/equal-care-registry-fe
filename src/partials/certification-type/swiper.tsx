@@ -65,8 +65,8 @@ const ITEMS = [
     href: ROUTES.certificateTypeAiSupportedDiagnosticTreatment,
   },
   {
-    type: CERTIFICATION_TYPES.femaleTech,
-    label: 'certification_type_femaletech',
+    type: CERTIFICATION_TYPES.femTech,
+    label: 'certification_type_femtech',
     href: ROUTES.certificateTypeFemaleTech,
   },
   {

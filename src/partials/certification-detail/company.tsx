@@ -26,7 +26,7 @@ export const Company = ({ company }: { company: any }) => {
           <div className='body-m-400 text-blue-85'>
             <div className='whitespace-pre-line'>{company.address}</div>
           </div>
-          <div className='body-l-500 text-blue-2'>
+          {/* <div className='body-l-500 text-blue-2'>
             {t('medical_info_line')}:
           </div>
           <NextLink
@@ -34,7 +34,7 @@ export const Company = ({ company }: { company: any }) => {
             className='body-m-400 text-green-500'
           >
             {company.medicalInfoLine}
-          </NextLink>
+          </NextLink> */}
           <div className='body-l-500 text-blue-2'>
             {t('medical_info_email')}:
           </div>

@@ -27,10 +27,13 @@ const Banner = () => {
   const t = useTranslations();
 
   return (
-    <div className={`relative bg-[#13B89C]`}>
+    <div className='relative banner-bg'>
       <div className='eq-container eq-px h-[32.5rem] flex flex-col justify-center'>
         <div className='flex flex-col gap-16 heading-01 text-white md:whitespace-pre-line'>
           {t('hero_banner_title')}
+          <div className='body-l-400 text-white heading-05-400'>
+            {t('hero_banner_subtitle')}
+          </div>
         </div>
       </div>
       {/* <Image
@@ -76,8 +79,8 @@ const Certifications = () => {
           />
           <CertificationType
             icon='/icons/femaletech-dark.svg'
-            label={t('certification_type_femaletech')}
-            href={CERTIFICATION_TYPES.femaleTech}
+            label={t('certification_type_femtech')}
+            href={CERTIFICATION_TYPES.femTech}
           />
           <CertificationType
             icon='/icons/maletech-dark.svg'
@@ -148,7 +151,7 @@ const CertificateItemCard = ({ item }: { item: (typeof CERTIFICATES)[0] }) => {
           CERTIFICATION_TYPES.aiSupportedDiagnosticTreatment,
         ].includes(item.type)
       ? ROUTES.certificateTreatment
-      : [CERTIFICATION_TYPES.femaleTech, CERTIFICATION_TYPES.maleTech].includes(
+      : [CERTIFICATION_TYPES.femTech, CERTIFICATION_TYPES.maleTech].includes(
           item.type
         )
       ? ROUTES.certificateService

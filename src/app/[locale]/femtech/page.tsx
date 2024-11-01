@@ -20,5 +20,5 @@ export async function generateMetadata(
 export default async function Home({ params: { locale, slug } }: any) {
   unstable_setRequestLocale(locale);
 
-  return <CertificationType type={CERTIFICATION_TYPES.femaleTech} />;
+  return <CertificationType type={CERTIFICATION_TYPES.femTech} />;
 }

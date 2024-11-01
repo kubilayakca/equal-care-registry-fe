@@ -13,7 +13,7 @@ export async function generateMetadata(
   const t = await getTranslations({ locale });
 
   const content = await Promise.resolve({
-    data: { header: 'TODO:', description: 'TODO:' },
+    data: { header: 'Registry', description: 'TODO:' },
   });
 
   return {
@@ -28,7 +28,7 @@ export default async function Home({ params: { locale, slug } }: any) {
   const found = CERTIFICATES.find(
     (c) =>
       c.slug === slug &&
-      [CERTIFICATION_TYPES.femaleTech, CERTIFICATION_TYPES.maleTech].includes(
+      [CERTIFICATION_TYPES.femTech, CERTIFICATION_TYPES.maleTech].includes(
         c.type
       )
   );
