@@ -70,7 +70,6 @@ export const Details = ({
                           row.values.map((val:any, j:number) => {
                             return (
                               <IndicationValue
-                                span={val.span as any}
                                 key={j}
                                 column={val.column as any}
                                 type={val.type as any}
@@ -79,7 +78,6 @@ export const Details = ({
                                 bg={val.bg as any}
                                 align={val.align as any}
                                 representationGap={val.representationGap as any}
-                                showRepresentationGapLabel={val.showRepresentationGapLabel as any}
                                 alignContent={val.alignContent as any}
                               />
                             )
@@ -122,8 +120,6 @@ const IndicationValue = ({
   align = 'left',
   column,
   representationGap,
-  showRepresentationGapLabel,
-  span = 1,
   alignContent,
 }: {
   type?: 'text' | 'number';
@@ -133,8 +129,6 @@ const IndicationValue = ({
   align?: 'left' | 'right';
   column: 'men' | 'women' | 'both';
   representationGap?: number
-  showRepresentationGapLabel?: boolean
-  span?: number;
   alignContent?: 'center';
 }) => {
   const t = useTranslations();
@@ -152,7 +146,7 @@ const IndicationValue = ({
       <div
         className={`border-b border-r border-gray-100 flex bg-green-50 
           ${
-            span === 1 ? 'lg:col-span-1' : 'lg:col-span-2'
+            column === 'both' ? 'lg:col-span-2' : 'lg:col-span-1'
           }
           ${
           type === 'number' ? 'py-2.5' : 'py-3 px-4'
@@ -174,28 +168,27 @@ const IndicationValue = ({
                 >
                   {value}%
                 </div>
-            </div>
-            {showRepresentationGapLabel && (
-              <div
-                className={`text-blue-85 m-2 ${align === 'right' ? 'text-right' : 'max-lg:ml-auto'}`}
-                >
-                Representation Gap
-              </div>
-            )}
-            
+                
             {representationGap && (
-              <div
-                className={`body-m-400 text-blue-85 text-white h-10 flex items-center justify-center bg-gray-500
-                } ${align === 'right' ? 'ml-auto' : 'max-lg:ml-auto'}`}
-                style={{
-                width: `${(Math.abs(representationGap))}%`,
-                minWidth: '2rem',
-              }}
-              >
-                {representationGap}%
+              <div className={`flex ${align === 'left' ?  'lg:flex-row-reverse' : ''}`}>
+                <div className={`text-blue-85 m-2 flex 
+                   ${align === 'left' ? 'max-lg:ml-auto lg:mr-auto' : 'ml-auto'}
+                  `}>
+                  Representation Gap
+                </div>
+                <div
+                  className={`body-m-400 text-blue-85 text-white h-10 flex items-center justify-center bg-gray-500 
+                  `}
+                  style={{
+                  width: `${(Math.abs(representationGap))}%`,
+                  minWidth: '2rem',
+                }}
+                >
+                  {representationGap}%
+                </div>
               </div>
             )}
-            
+            </div>
           </div>
         )}
         {type === 'text' && content && (

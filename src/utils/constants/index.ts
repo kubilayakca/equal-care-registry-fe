@@ -109,37 +109,37 @@ const HERMAID_CERTIFICATE = {
         {
           column: {label: 'prevalence', tooltip: 'prevalence_tooltip'},
           values: [
-            {column: 'men', span: 2,content: 'In Germany, an estimated 7.3 million women experience menopause-related symptoms that warrant medical attention. These symptoms can significantly impact both health and workplace performance, highlighting the urgent need for targeted healthcare interventions during this stage of life.'},
+            {column: 'both', content: 'In Germany, an estimated 7.3 million women experience menopause-related symptoms that warrant medical attention. These symptoms can significantly impact both health and workplace performance, highlighting the urgent need for targeted healthcare interventions during this stage of life.'},
           ]
         },
         {
           column: {label: 'healthcare_gap_closure', tooltip: 'healthcare_gap_closure_tooltip'},
           values: [
-            {column: 'men', span: 2, content: 'On average, it takes three years for women experiencing menopause-related symptoms to receive appropriate medical care. The platform addresses this delay by encouraging employers to offer menopause care as part of their health benefits package, thereby raising awareness among employees. This can foster a broader understanding of menopause among both male and female employees, promoting timely recognition and care. Through comprehensive health data tracking, AI-driven personalized anamnesis, and individualized patient education, the platform supports earlier diagnosis and intervention, helping to reduce the healthcare gap in menopause care.'},
+            {column: 'both', content: 'On average, it takes three years for women experiencing menopause-related symptoms to receive appropriate medical care. The platform addresses this delay by encouraging employers to offer menopause care as part of their health benefits package, thereby raising awareness among employees. This can foster a broader understanding of menopause among both male and female employees, promoting timely recognition and care. Through comprehensive health data tracking, AI-driven personalized anamnesis, and individualized patient education, the platform supports earlier diagnosis and intervention, helping to reduce the healthcare gap in menopause care.'},
           ]
         },
         {
           column: {label: 'efficacy/accuracy', tooltip: 'efficacy/accuracy_tooltip'},
           values: [
-            {column: 'men', span: 2, content: 'In a self-reported survey, 92% of platform users noted significant improvements in their health and well-being after utilizing the services. These outcomes suggest the platform’s efficacy in addressing menopause-related health challenges, particularly in terms of symptom management and care accessibility.'},
+            {column: 'both', content: 'In a self-reported survey, 92% of platform users noted significant improvements in their health and well-being after utilizing the services. These outcomes suggest the platform’s efficacy in addressing menopause-related health challenges, particularly in terms of symptom management and care accessibility.'},
           ]
         },
         {
           column: {label: 'accessibility', tooltip: 'accessibility_tooltip'},
           values: [
-            {column: 'men', span: 2, content: 'The platform provides users with access to a broad catalogue of menopause specialists, who can be booked directly through the platform. This ensures that women have a wide variety of treatment options and can even seek second opinions, promoting more personalized and well-rounded care. The platform is designed to be user-friendly, ensuring that women of all technological skill levels can easily navigate it.'},
+            {column: 'both', content: 'The platform provides users with access to a broad catalogue of menopause specialists, who can be booked directly through the platform. This ensures that women have a wide variety of treatment options and can even seek second opinions, promoting more personalized and well-rounded care. The platform is designed to be user-friendly, ensuring that women of all technological skill levels can easily navigate it.'},
           ]
         },
         {
           column: {label: 'affordability', tooltip: 'affordability_tooltip'},
           values: [
-            {column: 'men', span: 2, content: 'The platform offers flexible payment models, including employer-sponsored care options, making it accessible to a wide range of users. The educational courses provided are priced competitively, offering substantial value compared to market standards, while care and coaching services remain consistent with industry norms.'},
+            {column: 'both', content: 'The platform offers flexible payment models, including employer-sponsored care options, making it accessible to a wide range of users. The educational courses provided are priced competitively, offering substantial value compared to market standards, while care and coaching services remain consistent with industry norms.'},
           ]
         },
         {
           column: {label: 'level_of_evidence', tooltip: 'level_of_evidence_tooltip'},
           values: [
-            {column: 'men', span: 2, content: `At present, the efficacy data is based on self-reported outcomes, with 92% of users expressing improvement in symptoms. Continued data collection and validation efforts are underway to strengthen the evidence base supporting the platform's effectiveness.`},
+            {column: 'both', content: `At present, the efficacy data is based on self-reported outcomes, with 92% of users expressing improvement in symptoms. Continued data collection and validation efforts are underway to strengthen the evidence base supporting the platform's effectiveness.`},
           ]
         }
       ]
@@ -203,21 +203,21 @@ const PIPRA_CERT = {
         {
           column: {label: 'study_participation', tooltip: 'study_participation_tooltip'},
           values: [
-            {column: 'men', type: 'number', value: 52, align: 'right', showRepresentationGapLabel: true},
+            {column: 'men', type: 'number', value: 52, align: 'right'},
             {column: 'women', type: 'number', value: 48, align: 'left', bg: 'dark', representationGap: 1}
           ]
         },
         {
           column: {label: 'training_data_distribution', tooltip: 'training_data_distribution_tooltip'},
           values: [
-            {column: 'men', type: 'number', value: 54, align: 'right', showRepresentationGapLabel: true},
+            {column: 'men', type: 'number', value: 54, align: 'right'},
             {column: 'women', type: 'number', value: 46, align: 'left', bg: 'dark', representationGap: 3}
           ]
         },
         {
           column: {label: 'validation_data_distribution', tooltip: 'validation_data_distribution_tooltip'},
           values: [
-            {column: 'men', type: 'number', value: 55, align: 'right', showRepresentationGapLabel: true},
+            {column: 'men', type: 'number', value: 55, align: 'right'},
             {column: 'women', type: 'number', value: 45, align: 'left', bg: 'dark', representationGap: 4}
           ]
         },
@@ -228,67 +228,67 @@ const PIPRA_CERT = {
         {
           column: {label: 'study_representation', tooltip: 'study_representation_tooltip'},
           values: [
-            {column: 'both', type: 'text', span: 2, content: 'The study used as basis for development includes data for 2,250 patients, with a gender distribution of 54.6% male and 45.4% female. This indicates a balanced representation of genders. In the subset of patients who developed delirium, 52.3% were male and 47.7% were female. The gender distribution in the foundational research only has a minimal representation gap.', align: 'left'},
+            {column: 'both', type: 'text', content: 'The study used as basis for development includes data for 2,250 patients, with a gender distribution of 54.6% male and 45.4% female. This indicates a balanced representation of genders. In the subset of patients who developed delirium, 52.3% were male and 47.7% were female. The gender distribution in the foundational research only has a minimal representation gap.', align: 'left'},
           ]
         },
         {
           column: {label: 'training_data_quality', tooltip: 'training_data_quality_tooltip'},
           values: [
-            {column: 'both', type: 'text', span: 2, content: 'Gender Representation: As noted above, the training data includes 54.6% male and 45.4% female participants, which is balanced compared to the prevalence in the population. - Origin and Quality of Training Data: The article details that the data were sourced from eight high-quality studies (randomized control trials and cohort studies) - Transparency in Data Preprocessing: The study describes the preprocessing steps, including the handling of missing data and standardization procedures. - Investigation and Documentation of Biases: The study used the Quality In Prognosis Studies (QUIPS) tool to evaluate the risk of bias in several domains, including study participation, attrition, exposure measurement, outcome measurement, and study confounding. This comprehensive bias assessment indicates thorough investigation and documentation of potential biases and their impacts.', align: 'left'},
+            {column: 'both', type: 'text', content: 'Gender Representation: As noted above, the training data includes 54.6% male and 45.4% female participants, which is balanced compared to the prevalence in the population. - Origin and Quality of Training Data: The article details that the data were sourced from eight high-quality studies (randomized control trials and cohort studies) - Transparency in Data Preprocessing: The study describes the preprocessing steps, including the handling of missing data and standardization procedures. - Investigation and Documentation of Biases: The study used the Quality In Prognosis Studies (QUIPS) tool to evaluate the risk of bias in several domains, including study participation, attrition, exposure measurement, outcome measurement, and study confounding. This comprehensive bias assessment indicates thorough investigation and documentation of potential biases and their impacts.', align: 'left'},
           ]
         },
         {
           column: {label: 'validation_data_quality', tooltip: 'validation_data_quality_tooltip'},
           values: [
-            {column: 'both', type: 'text', span: 2, content: 'PIPRA was externally validated using two datasets from independent sources: Bern Dataset (Switzerland): Data were prospectively collected from patients undergoing surgery at a 70-bed Orthopaedic Surgery and Traumatology Department at the University Hospital of Bern. Patients were systematically assessed for postoperative delirium (POD) using the Delirium Observational Screening Scale (DOSS). This dataset provided robust, systematically collected data from a clinical environment, ensuring high external validity. LMU Dataset (Germany): A second dataset was collected from a study conducted at the Ludwig Maximilian University of Munich. Here, the 4AT Tool (and CAM-ICU for intubated patients) was used to assess POD in surgical patients. This data, although preliminary due to the ongoing nature of the study, contributes to a broader, real-world validation of PIPRA\'s predictive power. The external datasets were collected using validated, systematic methods for diagnosing POD, ensuring consistency and reliability in the outcomes. Handling of Missing Data: For the Bern dataset, missing variables such as ASA scores and CRP values were imputed based on predictor averages, minimizing data loss and maintaining model robustness without compromising the validity of the results. Diversity and Real-world Applicability: Both validation datasets were collected in diverse surgical settings, from orthopaedic to general surgery, enhancing the algorithm\'s applicability across various clinical environments. The systematic approach to collecting POD data and the high level of control over patient assessments ensures that the findings can be generalized to other settings where PIPRA might be used.', align: 'left'},
+            {column: 'both', type: 'text', content: 'PIPRA was externally validated using two datasets from independent sources: Bern Dataset (Switzerland): Data were prospectively collected from patients undergoing surgery at a 70-bed Orthopaedic Surgery and Traumatology Department at the University Hospital of Bern. Patients were systematically assessed for postoperative delirium (POD) using the Delirium Observational Screening Scale (DOSS). This dataset provided robust, systematically collected data from a clinical environment, ensuring high external validity. LMU Dataset (Germany): A second dataset was collected from a study conducted at the Ludwig Maximilian University of Munich. Here, the 4AT Tool (and CAM-ICU for intubated patients) was used to assess POD in surgical patients. This data, although preliminary due to the ongoing nature of the study, contributes to a broader, real-world validation of PIPRA\'s predictive power. The external datasets were collected using validated, systematic methods for diagnosing POD, ensuring consistency and reliability in the outcomes. Handling of Missing Data: For the Bern dataset, missing variables such as ASA scores and CRP values were imputed based on predictor averages, minimizing data loss and maintaining model robustness without compromising the validity of the results. Diversity and Real-world Applicability: Both validation datasets were collected in diverse surgical settings, from orthopaedic to general surgery, enhancing the algorithm\'s applicability across various clinical environments. The systematic approach to collecting POD data and the high level of control over patient assessments ensures that the findings can be generalized to other settings where PIPRA might be used.', align: 'left'},
           ]
         },
         {
           column: {label: 'algorithm_adaptability', tooltip: 'algorithm_adaptability_tooltip'},
           values: [
-            {column: 'both', type: 'text', span: 2, content: 'The PIPRA algorithm explicitly excludes gender as an input variable because the development it was determined that it is not a significant factor in predicting postoperative delirium. While this decision is based on the algorithm\'s performance and the analysis conducted during its development, it indicates that gender-specific needs were assessed and found not to be a determining factor for this particular prediction task. This approach reflects a data-driven decision to focus on more impactful variables, even though it means gender-specific adaptability is not directly addressed in the model.', align: 'left'},
+            {column: 'both', type: 'text', content: 'The PIPRA algorithm explicitly excludes gender as an input variable because the development it was determined that it is not a significant factor in predicting postoperative delirium. While this decision is based on the algorithm\'s performance and the analysis conducted during its development, it indicates that gender-specific needs were assessed and found not to be a determining factor for this particular prediction task. This approach reflects a data-driven decision to focus on more impactful variables, even though it means gender-specific adaptability is not directly addressed in the model.', align: 'left'},
           ]
         },
         {
           column: {label: 'accuracy', tooltip: 'accuracy_tooltip'},
           values: [
-            {column: 'both', type: 'text', span: 2, content: 'The PIPRA algorithm explicitly excludes gender as an input variable because the development it was determined that it is not a significant factor in predicting postoperative delirium. Therefore, the accuracy is identical for men and women. The algorithm has a high sensitivity of 90% for high-risk patients (meaning it correctly identifies 90% of patients who will experience delirium). This high sensitivity indicates that the algorithm is effective at catching most cases of delirium and therefore has a low likelihood of missing patients at risk. For patients classified as low risk by the algorithm, there is an 86% to 95% probability that they will not experience delirium. This high probability suggests that the algorithm is reliable in identifying patients who are genuinely at low risk.', align: 'left'},
+            {column: 'both', type: 'text', content: 'The PIPRA algorithm explicitly excludes gender as an input variable because the development it was determined that it is not a significant factor in predicting postoperative delirium. Therefore, the accuracy is identical for men and women. The algorithm has a high sensitivity of 90% for high-risk patients (meaning it correctly identifies 90% of patients who will experience delirium). This high sensitivity indicates that the algorithm is effective at catching most cases of delirium and therefore has a low likelihood of missing patients at risk. For patients classified as low risk by the algorithm, there is an 86% to 95% probability that they will not experience delirium. This high probability suggests that the algorithm is reliable in identifying patients who are genuinely at low risk.', align: 'left'},
           ]
         },
         {
           column: {label: 'transparency', tooltip: 'transparency_tooltip'},
           values: [
-            {column: 'both', type: 'text', span: 2,content: 'The PIPRA provides details on the hyperparameters (logistic regression with an L1 penalty), the training dataset (data from eight studies), and the training process (10-fold cross-validation for predictor selection and internal validation).', align: 'left'},
+            {column: 'both', type: 'text', content: 'The PIPRA provides details on the hyperparameters (logistic regression with an L1 penalty), the training dataset (data from eight studies), and the training process (10-fold cross-validation for predictor selection and internal validation).', align: 'left'},
           ]
         },
         {
           column: {label: 'accessibility', tooltip: 'accessibility_tooltip'},
           values: [
-            {column: 'both', type: 'text',span: 2, content: 'The PIPRA algorithm\'s user interface is designed for clinical use, providing meaningful output of absolute risk percentages and the importance of variables. The documentation enables the healthcare professional to use PIPRA.', align: 'left'},
+            {column: 'both', type: 'text', content: 'The PIPRA algorithm\'s user interface is designed for clinical use, providing meaningful output of absolute risk percentages and the importance of variables. The documentation enables the healthcare professional to use PIPRA.', align: 'left'},
           ]
         },
         {
           column: {label: 'affordability', tooltip: 'affordability_tooltip'},
           values: [
-            {column: 'both', type: 'text', span: 2, content: 'PIPRA is purchased by hospitals and practices and applied free of charge in the preoperative checkup of a patient.', align: 'left'},
+            {column: 'both', type: 'text', content: 'PIPRA is purchased by hospitals and practices and applied free of charge in the preoperative checkup of a patient.', align: 'left'},
           ]
         },
         {
           column: {label: 'possible_side_effects', tooltip: 'possible_side_effects_tooltip'},
           values: [
-            {column: 'both', type: 'text', span: 2, content: 'No known side effects.', align: 'left'},
+            {column: 'both', type: 'text', content: 'No known side effects.', align: 'left'},
           ]
         },
         {
           column: {label: 'regulatory_compliance', tooltip: 'regulatory_compliance_tooltip'},
           values: [
-            {column: 'both', type: 'text', span: 2, content: 'The PIPRA algorithm is certified as a Class IIa under MDR in Europe, indicating compliance with European medical device regulations. Ethical compliance is suggested through this certification and the study\'s adherence to international guidelines for delirium prevention', align: 'left'},
+            {column: 'both', type: 'text', content: 'The PIPRA algorithm is certified as a Class IIa under MDR in Europe, indicating compliance with European medical device regulations. Ethical compliance is suggested through this certification and the study\'s adherence to international guidelines for delirium prevention', align: 'left'},
           ]
         },
         {
           column: {label: 'level_of_evidence', tooltip: 'level_of_evidence_tooltip'},
           values: [
-            {column: 'both', type: 'text', span: 2, content: 'Level of evidence for AI development The PIPRA algorithm\'s level of evidence can be assessed based on the systematic review included in its development and validation, as well as the thoroughness of the analysis methods. Study Quality and Data Sources: An Individual Patient Data (IPD) meta-analysis was performed using data from 21 studies involving 8,528 patients. These studies were rigorously selected and included a wide range of perioperative factors. Most included studies were cohort studies from diverse geographical regions, including Europe, Asia, North America, Australia, and South America, enhancing the generalizability of the findings . Level of evidence for AI validation The algorithm was validated using both internal and external datasets, with performance metrics such as the area under the receiver operating characteristic curve (AUC) reported. Internal validation showed an AUC of 0.80 (95% CI: 0.77-0.82), while external validation reported an AUC of 0.74 (95% CI: 0.68-0.80) . Multiple imputations were used to handle missing data, and the one-stage IPD meta-analysis approach was employed to account for clustering within studies and enhance the robustness of the findings. Results and Sensitivity Analysis: The probability of experiencing POD was calculated using a multilevel mixed-effects logistic regression model. The results were consistent across various sensitivity analyses, indicating the stability and reliability of the model.', align: 'left'},
+            {column: 'both', type: 'text', content: 'Level of evidence for AI development The PIPRA algorithm\'s level of evidence can be assessed based on the systematic review included in its development and validation, as well as the thoroughness of the analysis methods. Study Quality and Data Sources: An Individual Patient Data (IPD) meta-analysis was performed using data from 21 studies involving 8,528 patients. These studies were rigorously selected and included a wide range of perioperative factors. Most included studies were cohort studies from diverse geographical regions, including Europe, Asia, North America, Australia, and South America, enhancing the generalizability of the findings . Level of evidence for AI validation The algorithm was validated using both internal and external datasets, with performance metrics such as the area under the receiver operating characteristic curve (AUC) reported. Internal validation showed an AUC of 0.80 (95% CI: 0.77-0.82), while external validation reported an AUC of 0.74 (95% CI: 0.68-0.80) . Multiple imputations were used to handle missing data, and the one-stage IPD meta-analysis approach was employed to account for clustering within studies and enhance the robustness of the findings. Results and Sensitivity Analysis: The probability of experiencing POD was calculated using a multilevel mixed-effects logistic regression model. The results were consistent across various sensitivity analyses, indicating the stability and reliability of the model.', align: 'left'},
           ]
         },
       ]
@@ -335,8 +335,8 @@ const CAMZYOS_CERT = {
         {
           column: {label: 'study_participation', tooltip: 'study_participation_tooltip'},
           values: [
-            {column: 'men', type: 'number', value: 57, align: 'right',representationGap: -13 },
-            {column: 'women', type: 'number', value: 43, align: 'left', bg: 'dark',showRepresentationGapLabel: true}
+            {column: 'men', type: 'number', value: 57, align: 'right',representationGap: -7 },
+            {column: 'women', type: 'number', value: 43, align: 'left', bg: 'dark'}
           ]
         },
         {
@@ -360,7 +360,7 @@ const CAMZYOS_CERT = {
         {
           column: {label: 'possible_side_effects', tooltip: 'possible_side_effects_tooltip'},
           values: [
-            {column: 'men', type: 'text', span:2, content: `Common Side Effects:
+            {column: 'both', type: 'text', content: `Common Side Effects:
 
 Dizziness or lightheadedness – This can occur due to its effect on lowering heart rate and blood pressure.
 Fatigue – Feeling unusually tired is a common reaction as the medication reduces the force of the heart's contractions.
@@ -412,21 +412,21 @@ const CardioExplorerCert = {
         {
           column: {label: 'study_participation', tooltip: 'study_participation_tooltip'},
           values: [
-            {column: 'men', type: 'number', value: 66, align: 'right', showRepresentationGapLabel: true},
+            {column: 'men', type: 'number', value: 66, align: 'right'},
             {column: 'women', type: 'number', value: 34, align: 'left', bg: 'dark', representationGap: -12}
           ]
         },
         {
           column: {label: 'training_data_distribution', tooltip: 'training_data_distribution_tooltip'},
           values: [
-            {column: 'men', type: 'number', value: 70, align: 'right', showRepresentationGapLabel: true},
+            {column: 'men', type: 'number', value: 70, align: 'right'},
             {column: 'women', type: 'number', value: 30, align: 'left', bg: 'dark', representationGap: -16}
           ]
         },
         {
           column: {label: 'validation_data_distribution', tooltip: 'validation_data_distribution_tooltip'},
           values: [
-            {column: 'men', type: 'number', value: 58, align: 'right', showRepresentationGapLabel: true},
+            {column: 'men', type: 'number', value: 58, align: 'right'},
             {column: 'women', type: 'number', value: 42, align: 'left', bg: 'dark', representationGap: -4}
           ]
         },
@@ -477,43 +477,43 @@ const MEDICSTREAM_CERT = {
         {
           column: {label: 'functionality', tooltip: 'functionality_tooltip'},
           values: [
-            {column: 'men', span: 2, type: 'text', content: `medicstream allows to share curated digital medical content from health practitioners to patient on three layers. The highest layer of a library would allow to create gender-specific libraries per medical field or a library with gender medicine as own topic. Within a library the content is structured by indication, also offering the possibility to create gender-specific indications. Indications also can be structured into chapters also with the possibility to have gender-specific content within.`, align: 'left'}
+            {column: 'both', type: 'text', content: `medicstream allows to share curated digital medical content from health practitioners to patient on three layers. The highest layer of a library would allow to create gender-specific libraries per medical field or a library with gender medicine as own topic. Within a library the content is structured by indication, also offering the possibility to create gender-specific indications. Indications also can be structured into chapters also with the possibility to have gender-specific content within.`, align: 'left'}
           ]
         },
         {
           column: {label: 'personalization', tooltip: 'personalization_tooltip'},
           values: [
-            {column: 'men', span: 2, type: 'text', content: `medicstream’s core value is the enablement of personalized health content curated by healthcare professionals for the patient. Therefore, the possibilities of personalization are given to a maximum degree.`, align: 'left'}
+            {column: 'both', type: 'text', content: `medicstream’s core value is the enablement of personalized health content curated by healthcare professionals for the patient. Therefore, the possibilities of personalization are given to a maximum degree.`, align: 'left'}
           ]
         },
         {
           column: {label: 'accessibility', tooltip: 'accessibility_tooltip'},
           values: [
-            {column: 'men', span: 2, type: 'text', content: `To be able to benefit from medicstream the patient needs an internet connected device and an email address. medicstream is free of charge for patients. The patient individual content is accessible at any time. These are the lowest possible prerequisites for digital interventions. Therefore the accessibility is high for men and women. The most relevant barrier to accessibility is the dependency on the healthcare professional to provide the individualizes content to the patient. `, align: 'left'}
+            {column: 'both', type: 'text', content: `To be able to benefit from medicstream the patient needs an internet connected device and an email address. medicstream is free of charge for patients. The patient individual content is accessible at any time. These are the lowest possible prerequisites for digital interventions. Therefore the accessibility is high for men and women. The most relevant barrier to accessibility is the dependency on the healthcare professional to provide the individualizes content to the patient. `, align: 'left'}
           ]
         },
         {
           column: {label: 'affordability', tooltip: 'affordability_tooltip'},
           values: [
-            {column: 'men', span: 2, type: 'text', content: `medicstream is a cost-effective platform that is free of charge for the patient.`, align: 'left'}
+            {column: 'both', type: 'text', content: `medicstream is a cost-effective platform that is free of charge for the patient.`, align: 'left'}
           ]
         },
         {
           column: {label: 'possible_side_effects', tooltip: 'possible_side_effects_tooltip'},
           values: [
-            {column: 'men', span: 2, type: 'text', content: `No known side effects.`, align: 'left'}
+            {column: 'both', type: 'text', content: `No known side effects.`, align: 'left'}
           ]
         },
         {
           column: {label: 'regulatory_compliance', tooltip: 'regulatory_compliance_tooltip'},
           values: [
-            {column: 'men', span: 2, type: 'text', content: `medicstream is GDPR conform. The personalize access to the patient individual content allows privacy for the patient. Ethics and privacy are given equally for men and women.`, align: 'left'}
+            {column: 'both', type: 'text', content: `medicstream is GDPR conform. The personalize access to the patient individual content allows privacy for the patient. Ethics and privacy are given equally for men and women.`, align: 'left'}
           ]
         },
         {
           column: {label: 'scientific_evidence', tooltip: 'scientific_evidence_tooltip'},
           values: [
-            {column: 'men', span: 2, type: 'text', content: `Patient individual content provision has positive impact on health competence, psychosocial health outcomes and compliance.`, align: 'left'}
+            {column: 'both', type: 'text', content: `Patient individual content provision has positive impact on health competence, psychosocial health outcomes and compliance.`, align: 'left'}
           ]
         },
       ]
