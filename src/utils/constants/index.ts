@@ -390,27 +390,29 @@ const CardioExplorerCert = {
   type: 'AI-supported test for coronary heart disease.',
   targetGender: TargetGender.BOTH,
   description:
-    'Cardio Explorer is a non-invasive test that detects life-threatening narrowing of the coronary arteries (coronary artery disease).',
+    'A novel, artificial intelligence-based, non-invasive tool for the diagnosis and exclusion of obstructive coronary artery disease and myocardial ischemia. ',
   company: Exploris_Health_AG_COMPANY,
   ingredients: [],
   indications: [
     {
-      title: 'Coronary Artery Disease',
+      title: 'Obstructive Coronary Artery Disease (defined as anatomic stenosis of > 50%)',
       description: 'Coronary Artery Disease',
       indicationRows: [
         {
           column: {label: 'prevalence', tooltip: 'prevalence_tooltip'},
           values: [
-            {column: 'men', type: 'text', content: '1.79%', align: 'right',bg: 'light', alignContent: 'center'},
-            {column: 'women', type: 'text', content: '1.52%', bg: 'dark',align: 'left', alignContent: 'center'}
+            {column: 'men', type: 'text', content: '1.786% ', align: 'right',bg: 'light', alignContent: 'center'},
+            {column: 'women', type: 'text', content: '1.522%', bg: 'dark',align: 'left', alignContent: 'center'}
           ]
         },
         {
           column: {label: 'gender_distribution', tooltip: 'gender_distribution_tooltip'},
-          values: [{column: 'men', type: 'number', value: 54, align: 'right'},{column: 'women', type: 'number', value: 46, align: 'left', bg: 'dark'}]
-        },
+          values: [
+            {column: 'men', type: 'number', value: '54', align: 'right',bg: 'light', alignContent: 'center'},
+            {column: 'women', type: 'number', value: '46', bg: 'dark',align: 'left', alignContent: 'center'}
+          ]        },
         {
-          column: {label: 'study_participation', tooltip: 'study_participation_tooltip'},
+          column: {label: 'initial_study_participation', tooltip: 'initial_study_participation_tooltip'},
           values: [
             {column: 'men', type: 'number', value: 66, align: 'right'},
             {column: 'women', type: 'number', value: 34, align: 'left', bg: 'dark', representationGap: -12}
@@ -431,6 +433,12 @@ const CardioExplorerCert = {
           ]
         },
         {
+          column: {label: 'study_representation', tooltip: 'study_representation_tooltip'},
+          values: [
+            {column: 'both', type: 'text', content: 'The study population in the foundational research included in the development of the Cardio Explorer algorithm for diagnosing coronary artery disease (CAD) shows a balanced gender representation: 66% male, 34% female​, aligning with general population gender distribution of 54% male and 46% female with a representation gap of 12% for women. The representation gap is reduced to only 3.7% in the validation data distribution.', align: 'right'},
+          ]
+        },
+        {
           column: {label: 'accuracy', tooltip: 'accuracy_tooltip'},
           values: [
             {column: 'men', type: 'text', content: 'Cardio Explorer® correctly identifies <b>obstructive CAD</b> (defined as anatomic stenosis of > 50%) in <b>88% of male cases</b>.', align: 'right'},
@@ -438,37 +446,16 @@ const CardioExplorerCert = {
           ]
         },
         {
-          column: {label: 'study_representation', tooltip: 'study_representation_tooltip'},
-          values: [
-            {column: 'both', type: 'text', content: 'The study population in the foundational research included in the development of the Cardio Explorer algorithm for diagnosing coronary artery disease (CAD) shows a balanced gender representation: 66% male, 34% female​, aligning with general population gender distribution of 554% male and 46% female with a representation gap of 12% for women. The representation gap is reduced to only 3.7% in the validation data distribution.'}
-          ]
-        },
-        {
           column: {label: 'training_data_quality', tooltip: 'training_data_quality_tooltip'},
           values: [
             {column: 'both', type: 'text', content: `
-              <p>For training the algorithm was further refined with data from the LURIC study with 987 participants with a gender distribution of 61% male and 29% female. Additionally,  a simulated data set for low-risk patients that had 30303 patients with 43% females was used for training of the algorithm. Aligning closely with general population gender distribution of 53% male and 47% female.</p>
-              <br/>
               <ul>
-              <li>•<b>Gender Representation:</b> The data used for training compensated the lack of female representation in the simulated data reducing the representation gap to only 3%.</li>
-              <li>•<b>Origin and Quality:</b> Data was sourced from multiple high-quality study, with validation in real-world outpatient settings​.</li>
-              <li>•<b>Data Preprocessing and Transformations:</b> The preprocessing steps, including handling of missing data and data transformations, are well documented. For example, missing values were replaced with median values or constants within normal ranges​.</li>
-              <li>•<b>Bias Investigation and Documentation:</b> The studies utilized robust statistical methods and sensitivity analyses to ensure the stability and reliability of the models. The comprehensive analysis indicates a thorough investigation of biases.</li>
-              <ul>
-            `}
-          ]
-        },
-        {
-          column: {label: 'validation_data_quality', tooltip: 'validation_data_quality_tooltip'},
-          values: [
-            {column: 'both', type: 'text', content: `
-              <p>The algorithm was validated in two independent cohorts. The Maastricht cohort (CVC study) included 696 participants, with a gender distribution of 51% female and 49% male, closely reflecting the general population's gender distribution. Additionally, the Basel II (PET Study) cohort comprised 2,417 participants, with a gender distribution of 68% male and 32% female. Both cohorts represent real-world clinical settings, ensuring that the validation reflects practical applicability in outpatient scenarios.</p>
-              <br/>
-              <ul>
-              <li>•<b>Gender Representation:</b> The Maastricht cohort demonstrated gender parity, aligning closely with the general population distribution, while the Basel II cohort had a higher proportion of males, reflecting typical representation in coronary artery disease (CAD) studies. In aggregation the validation data has a representation gap of only 10% for women.</li>
-              <li>•<b>Origin and Quality:</b> Both validation datasets were sourced from high-quality studies in outpatient and diagnostic settings, enhancing the reliability of the algorithm’s validation results.</li>
-              <li>•<b>Bias Investigation and Documentation:</b> The validation was conducted with thorough statistical analyses, ensuring the algorithm's performance remained unbiased across gender and risk categories.</li>
-              <ul>
+              <li>•The initial algorithm derived from the <b>foundational research in Basel</b> was <b>further optimized</b> with data from the LURIC study.</li>
+              <li><b>•The optimized algorithm was then</b> broadly validated in real-world in- and outpatient settings with a female representation gap of only 3.7%.</li>
+              <li><b>•Origin and Quality:</b> Data was sourced from multiple high-quality clinical studies.</li>
+              <li><b>•Data Preprocessing and Transformations:</b>The preprocessing steps, including handling of missing data and data transformations, are well documented. For example, missing values were replaced with median values or constants within normal ranges​.</li>
+              <li>•<b>Bias Investigation and Documentation:</b> The studies utilized robust statistical methods and sensitivity analyses to ensure the stability and reliability of the models. The comprehensive analysis indicates a thorough investigation of biases.</li>
+<ul>
             `}
           ]
         },
@@ -476,7 +463,8 @@ const CardioExplorerCert = {
           column: {label: 'algorithm_adaptability', tooltip: 'algorithm_adaptability_tooltip'},
           values: [
             {column: 'both', type: 'text', content: `
-              <p>The Cardio Explorer algorithm includes a comprehensive set of clinical and laboratory variables. Among these variables, sex (gender) is explicitly listed as one of the inputs.</p>
+              <p><b>The Cardio Explorer algorithm requires only easily accessible patient data from a set of clinical and laboratory variables. </b></p>
+              <p>Among these variables, sex (gender) is explicitly listed as one of the inputs.</p>
               <br/>
               <ul>
               <li>•<b>Clinical Variables:</b>Age, sex, weight, height, presence and type of chest pain, diabetes, nicotine use, pathological Q-waves (at ECG), systolic and diastolic blood pressure, and relevant medication like statin use.</li>
@@ -489,25 +477,16 @@ const CardioExplorerCert = {
           column: {label: 'accuracy', tooltip: 'accuracyy_tooltip'},
           values: [
             {column: 'both', type: 'text', content: `
-              <p>The accuracy of the tool is measured by <b>AUC (Area Under the Curve)</b>, which ranges from 0.5 (random guessing) to 1.0 (perfect accuracy). In its general performance, Cardio Explorer demonstrates a strong diagnostic capability with:</p>
-              <br/>
+              <p>The diagnostic accuracy of the tool is evaluated using the Area Under the Curve (AUC) from receiver operating characteristic (ROC) analysis. The AUC value ranges from 0.5, which reflects random chance, to 1.0, representing perfect diagnostic accuracy.</p>
 
-              <ul>
-                <li><b>AUC = 0.82</b>, meaning it correctly identifies whether a patient has CAD in 82% of cases. This level of accuracy is considered high in clinical diagnostics.</li>
-                <li>Cardio Explorer’s predictive performance has been evaluated separately for men and women, with slightly different results:</li>
-                <li><b>For men</b>, the tool shows an <b>AUC of 0.708</b>. This indicates that the algorithm correctly identifies CAD in 70.8% of male cases.</li>
-                <li><b>For men</b>, the tool shows an <b>AUC of 0.708</b>. This indicates that the algorithm correctly identifies CAD in 70.8% of male cases.</li>
-              <ul>
-              <br/>
-              <b>In clinical practice:</b>
-
-              <ul>
-                <li>•Cardio Explorer performs reliably across both male and female populations.</li>
-                <li>•Its slightly higher accuracy for women (77% versus 70.8% for men) reflects differences in how CAD may present in different genders, a common consideration in cardiovascular risk assessment.</li>
-              <ul>
-              <br/>
-              Overall, the tool provides clinicians with an evidence-based, non-invasive method to evaluate CAD risk, and the results demonstrate strong accuracy, making it a valuable asset in patient evaluation.
-              
+<p>In clinical use, the Cardio Explorer algorithm <b>demonstrates robust and strong diagnostic performance</b> in predicting the presence of obstructive CAD:</p>
+<ul>
+    <li><b>In high-prevalence CAD settings (inpatient setting):</b> The AUC is 0.87, indicating the model accurately identifies obstructive CAD in 87% of cases. This level of accuracy is considered high and clinically significant.</li>
+    <li><b>In low-prevalence CAD settings (outpatient setting):</b> The AUC remains 0.87 overall, reflecting a strong and robust diagnostic performance also in lower prevalence settings.</li>
+</ul>
+<p>These results underscore the tool’s consistent diagnostic accuracy across different clinical settings and patient populations. </p>
+<p>Additionally, Cardio Explorer® has been validated for its ability to detect <b>myocardial ischemia</b>, as measured by PET imaging, with an AUC of 0.76. Interestingly, its performance is even better in female patients (AUC 0.77).</p>
+<p>The slightly lower AUC in ischemia detection is attributable to the fact that the algorithm was specifically trained and validated to identify the <b>anatomical presence of coronary artery disease (CAD)</b> defined as >50% stenosis via invasive coronary angiography, rather than ischemia itself.</p>
             `}
           ]
         },
@@ -526,7 +505,7 @@ const CardioExplorerCert = {
         {
           column: {label: 'affordability', tooltip: 'affordability_tooltip'},
           values: [
-            {column: 'both', type: 'text', content: 'The Cardio Explorer is a cost-effective alternative to more expensive imaging procedures like Stress-ECG, CCTA (Coronary Computed Tomography Angiography), and MRI (Magnetic Resonance Imaging). Unlike these traditional methods, the Cardio Explorer offers a non-invasive option that carries no side effects, making it a safer and more accessible choice for patients. Its affordability and safety could make it particularly beneficial in routine screenings.'}
+            {column: 'both', type: 'text', content: 'The Cardio Explorer is a cost-effective alternative to more expensive imaging procedures like Stress-ECG, CCTA (Coronary Computed Tomography Angiography), and MRI (Magnetic Resonance Imaging). Unlike these traditional methods, the Cardio Explorer offers a non-invasive option that carries no side effects, making it a safer and more accessible choice for patients. Its affordability and safety could make it particularly beneficial in routine screenings, improving cardiology by identifying the relevant patients earlier and avoiding unnecessary referrals of patients without treatable stenosis and therefore saving significantly healthcare spendings.'}
           ]
         },
         {
@@ -545,11 +524,11 @@ const CardioExplorerCert = {
           column: {label: 'level_of_evidence', tooltip: 'level_of_evidence_tooltip'},
           values: [
             {column: 'both', type: 'text', content: `
-              <b>Level of evidence for AI development:</b> The Cardio Explorer algorithm's level of evidence can be assessed based on the systematic review included in its development and validation, as well as the thoroughness of the analysis methods. The model was originally developed on the basis of the BASEL Study and then trained and validated using the LURIC Study, both cohort studies.
+              <b>Level of evidence for AI development:</b> The Cardio Explorer algorithm's level of evidence can be assessed based on the systematic review included in its development and validation, as well as the thoroughness of the analysis methods. The model was originally developed with data from Basel (Zellweger et al. 2014) and then further optimized with data from the German LURIC Study (Zellweger et al. 2018).
               <br/>
-              <b>Level of evidence for AI validation:</b> The algorithm was validated using external dataset, with performance metrics such as the area under the receiver operating characteristic curve (AUC) reported.
+              <b>Level of evidence for AI validation:</b> The algorithm was validated using external dataset, with performance metrics such as the area under the receiver operating characteristic curve (AUC) reported. 
               <br/>
-              <b>Results and Sensitivity Analysis:</b> The results of the algorithm prediction were compared to established diagnostic procedures across coronary artery disease risk classes. For low-risk to intermediate-risk cohort referred for cardiac evaluation, the Cardio Explorer algorithm is a useful tool in the evaluation for CAD, superior to the generally used risk scores.
+              <b>Results and Sensitivity Analysis:</b> The results of the algorithm prediction were compared to established diagnostic procedures. The tool remains a highly valuable, evidence-based, non-invasive method for diagnosis and exclusion of obstructive coronary artery disease and myocardial ischemia.
               `}
           ]
         },
