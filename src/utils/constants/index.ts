@@ -449,8 +449,9 @@ const CardioExplorerCert = {
           column: {label: 'training_data_quality', tooltip: 'training_data_quality_tooltip'},
           values: [
             {column: 'both', type: 'text', content: `
+              <p>The initial algorithm derived from the <b>foundational research in Basel</b> was <b>further optimized</b> with data from the LURIC study.</p>
+              <br/>
               <ul>
-              <li>•The initial algorithm derived from the <b>foundational research in Basel</b> was <b>further optimized</b> with data from the LURIC study.</li>
               <li><b>•The optimized algorithm was then</b> broadly validated in real-world in- and outpatient settings with a female representation gap of only 3.7%.</li>
               <li><b>•Origin and Quality:</b> Data was sourced from multiple high-quality clinical studies.</li>
               <li><b>•Data Preprocessing and Transformations:</b>The preprocessing steps, including handling of missing data and data transformations, are well documented. For example, missing values were replaced with median values or constants within normal ranges​.</li>
@@ -480,6 +481,7 @@ const CardioExplorerCert = {
               <p>The diagnostic accuracy of the tool is evaluated using the Area Under the Curve (AUC) from receiver operating characteristic (ROC) analysis. The AUC value ranges from 0.5, which reflects random chance, to 1.0, representing perfect diagnostic accuracy.</p>
 
 <p>In clinical use, the Cardio Explorer algorithm <b>demonstrates robust and strong diagnostic performance</b> in predicting the presence of obstructive CAD:</p>
+<br/>
 <ul>
     <li><b>In high-prevalence CAD settings (inpatient setting):</b> The AUC is 0.87, indicating the model accurately identifies obstructive CAD in 87% of cases. This level of accuracy is considered high and clinically significant.</li>
     <li><b>In low-prevalence CAD settings (outpatient setting):</b> The AUC remains 0.87 overall, reflecting a strong and robust diagnostic performance also in lower prevalence settings.</li>
@@ -488,6 +490,20 @@ const CardioExplorerCert = {
 <p>Additionally, Cardio Explorer® has been validated for its ability to detect <b>myocardial ischemia</b>, as measured by PET imaging, with an AUC of 0.76. Interestingly, its performance is even better in female patients (AUC 0.77).</p>
 <p>The slightly lower AUC in ischemia detection is attributable to the fact that the algorithm was specifically trained and validated to identify the <b>anatomical presence of coronary artery disease (CAD)</b> defined as >50% stenosis via invasive coronary angiography, rather than ischemia itself.</p>
             `}
+          ]
+        },
+        {
+          column: {label: 'validation_data_quality', tooltip: 'validation_data_quality_tooltip'},
+          values: [
+            {column: 'both', type: 'text', content: `
+              <p>The algorithm was validated in four independent cohorts: Validation sample from the LURIC cohort (494 patients, with 33% female), a simulated low-prevalence population (30’303 patients, with 43% female), an independent outpatient cohort (696 patients, with 51% female) and a validation cohort for myocardial ischemia (2417 patients, 32% female). Overall, the validation data distribution consists of 42.3% female and thus, closely reflecting the general population's gender distribution. </p>
+<br/>
+              <ul>
+                  <li><b>•Origin and Quality:</b> Both validation datasets were sourced from high-quality studies in outpatient and diagnostic settings, enhancing the reliability of the algorithm’s validation results.</li>
+                  <li><b>•Bias Investigation:</b> The validation was conducted with thorough statistical analyses, ensuring the algorithm's performance remained unbiased across gender and risk categories.</li>
+              </ul>
+
+              `}
           ]
         },
         {
