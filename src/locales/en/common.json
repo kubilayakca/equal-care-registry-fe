@@ -21,7 +21,7 @@
   "certifications_title": "Certifications of EQUAL CARE®",
   "certificates_title": "Products and Services Certified by EQUAL CARE®",
   "companies_title": "Companies Working With EQUAL CARE®",
-  
+
   "company": "Company",
   "website": "Website",
   "address": "Address",
@@ -53,9 +53,9 @@
   "follow_us": "Follow Us",
 
   "certification_type_medication": "Medication",
-  "certification_type_diagnostic_treatment": "Diagnostic / Treatement",
-  "certification_type_digital_diagnostic_treatment": "Digital Diagnostic / Treatement",
-  "certification_type_ai_supported_diagnostic_treatment": "AI-Supported Diagnostic / Treatement",
+  "certification_type_diagnostic_treatment": "Diagnostic / Treatment",
+  "certification_type_digital_diagnostic_treatment": "Digital Diagnostic / Treatment",
+  "certification_type_ai_supported_diagnostic_treatment": "AI-Supported Diagnostic / Treatment",
   "certification_type_femtech": "FemTech",
   "certification_type_maletech": "MaleTech",
 
@@ -98,33 +98,27 @@
   "training_data_distribution": "Training Data Distribution",
   "training_data_distribution_tooltip": "Training Data Distribution",
 
-  
   "training_data_quality": "Training Data Quality",
   "training_data_quality_tooltip": "Training Data Quality",
 
   "validation_data_quality": "Validation Data Quality",
   "validation_data_quality_tooltip": "Validation Data Quality",
 
-  
   "algorithm_adaptability": "Algorithm Adaptability",
   "algorithm_adaptability_tooltip": "Algorithm Adaptability",
 
-  
-    
   "transparency": "Transparency",
   "transparency_tooltip": "Transparency",
-  
-  
 
   "validation_data_distribution": "Validation Data Distribution",
   "validation_data_distribution_tooltip": "Validation Data Distribution",
- 
+
   "accuracy": "Accuracy",
   "accuracy_tooltip": "Accuracy",
 
   "accessibility": "Accessibility",
   "accessibility_tooltip": "Accessibility",
-  
+
   "affordability": "Affordability",
   "affordability_tooltip": "Affordability",
 
@@ -139,7 +133,6 @@
 
   "difference_in_side_effects": "Difference in Possible Side Effects",
   "difference_in_side_effects_tooltip": "Difference in Possible Side Effects",
-  
 
   "efficacy/accuracy": "Efficacy/Accuracy",
   "efficacy/accuracy_tooltip": "Efficacy/Accuracy",
@@ -153,22 +146,18 @@
   "regulatory_compliance": "Regulatory Compliance",
   "regulatory_compliance_tooltip": "Regulatory Compliance",
 
-  
   "functionality": "Functionality",
   "functionality_tooltip": "Functionality",
-  
+
   "personalization": "Personalization",
   "personalization_tooltip": "Personalization",
 
-  
-  
   "posology": "Posology",
   "posology_tooltip": "Posology",
   "difference_in_possible_side_effects": "Difference in Possible Side Effects",
   "difference_in_possible_side_effects_tooltip": "Difference in Possible Side Effects",
   "possible_side_effects": "Possible Side Effects",
   "possible_side_effects_tooltip": "Possible Side Effects",
-
 
   "hero_banner_title": "Ensuring Sex- and Gender-Balance \nin Medical Testing for Better Care",
   "hero_banner_subtitle": "75% of medical intervention do not have the same effect on men and women. When we develop treatments we need to test on everyone that might use them. EQUAL CARE certifies prevention, diagnostic and treatments with sex- and gender-balanced clinical data.",
