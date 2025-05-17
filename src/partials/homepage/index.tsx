@@ -87,6 +87,11 @@ const Certifications = () => {
             label={t('certification_type_maletech')}
             href={CERTIFICATION_TYPES.maleTech}
           />
+          <CertificationType
+            icon='/icons/digital-diagnostic-treatment-dark.svg'
+            label={t('certification_type_digital_prevention')}
+            href={ROUTES.certificateTypeDigitalPrevention}
+          />
         </div>
       </div>
     </div>
@@ -143,19 +148,22 @@ const Certificates = () => {
 
 const CertificateItemCard = ({ item }: { item: (typeof CERTIFICATES)[0] }) => {
   const route = useMemo(() => {
-    return item.type === CERTIFICATION_TYPES.medication
-      ? ROUTES.certificateMedication
-      : [
-          CERTIFICATION_TYPES.diagnosticTreatment,
-          CERTIFICATION_TYPES.digitalDiagnosticTreatment,
-          CERTIFICATION_TYPES.aiSupportedDiagnosticTreatment,
-        ].includes(item.type)
-      ? ROUTES.certificateTreatment
-      : [CERTIFICATION_TYPES.femTech, CERTIFICATION_TYPES.maleTech].includes(
-          item.type
-        )
-      ? ROUTES.certificateService
-      : '';
+    console.log(item.slug);
+    switch (item.type) {
+      case CERTIFICATION_TYPES.medication:
+      return ROUTES.certificateMedication;
+      case CERTIFICATION_TYPES.digitalPrevention:
+      return ROUTES.certificatePrevention;
+      case CERTIFICATION_TYPES.diagnosticTreatment:
+      case CERTIFICATION_TYPES.digitalDiagnosticTreatment:
+      case CERTIFICATION_TYPES.aiSupportedDiagnosticTreatment:
+      return ROUTES.certificateTreatment;
+      case CERTIFICATION_TYPES.femTech:
+      case CERTIFICATION_TYPES.maleTech:
+      return ROUTES.certificateService;
+      default:
+      return '';
+    }
   }, [item.type]);
 
   return (

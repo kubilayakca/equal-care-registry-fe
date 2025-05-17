@@ -16,11 +16,14 @@ export const pathnames = {
   },
   [ROUTES.certificateTypeFemaleTech]: { en: '/femtech' },
   [ROUTES.certificateTypeMaleTech]: { en: '/maletech' },
+  [ROUTES.certificateTypeDigitalPrevention]: {
+    en: '/digital-prevention',
+  },
 
+  [ROUTES.certificatePrevention]: { en: '/digital-prevention/[slug]' },
   [ROUTES.certificateMedication]: { en: '/medication/[slug]' },
   [ROUTES.certificateTreatment]: { en: '/treatment/[slug]' },
   [ROUTES.certificateService]: { en: '/service/[slug]' },
-
   '[...rest]': '[...rest]',
 };
 
@@ -46,8 +49,8 @@ export const Link = ({ href, locale, ...rest }: any) => {
         href === ROUTES.root && currentLocale !== 'en'
           ? `${href}/`
           : href?.pathname === ROUTES.root && locale !== 'en'
-          ? `${href?.pathname}/`
-          : href
+            ? `${href?.pathname}/`
+            : href
       }
       localePrefix={
         currentLocale === 'en' || locale === 'en' ? 'never' : 'as-needed'

@@ -56,6 +56,7 @@
   "certification_type_diagnostic_treatment": "Diagnostic / Treatment",
   "certification_type_digital_diagnostic_treatment": "Digital Diagnostic / Treatment",
   "certification_type_ai_supported_diagnostic_treatment": "AI-Supported Diagnostic / Treatment",
+  "certification_type_digital_prevention": "Digital Prevention",
   "certification_type_femtech": "FemTech",
   "certification_type_maletech": "MaleTech",
 
@@ -125,6 +126,9 @@
   "healthcare_gap_closure": "Healthcare Gap Closure",
   "healthcare_gap_closure_tooltip": "Training Data Distribution",
 
+  "healthcare_gap_relevance": "Healthcare Gap Relevance",
+  "healthcare_gap_relevance_tooltip": "Healthcare Gap Relevance",
+
   "level_of_evidence": "Level of Evidence",
   "level_of_evidence_tooltip": "Level of Evidence",
 
@@ -173,6 +177,9 @@
 
   "page_digital_diagnostic_treatment_title": "Registry",
   "page_digital_diagnostic_treatment_description": "",
+
+  "page_digital_prevention_title": "Registry",
+  "page_digital_prevention_description": "",
 
   "page_ai_supported_diagnostic_treatment_title": "Registry",
   "page_ai_supported_diagnostic_treatment_description": "",

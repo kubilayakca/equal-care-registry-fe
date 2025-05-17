@@ -32,6 +32,8 @@ export const CertificationType = ({
         return <CriteriaTableForDigitalPreventionAndDiagnosticAndTreatment/>;
       case CERTIFICATION_TYPES.digitalDiagnosticTreatment:
         return <CriteriaTableForDigitalPreventionAndDiagnosticAndTreatment/>;
+      case CERTIFICATION_TYPES.digitalPrevention:
+        return <CriteriaTableForDigitalPrevention/>;
       case CERTIFICATION_TYPES.aiSupportedDiagnosticTreatment:
         return <CriteriaTableForAISupportedDiagnosticAndTreatment/>;
       case CERTIFICATION_TYPES.femTech:
@@ -491,6 +493,85 @@ const CriteriaTableForFemTechAndMaleTech = () => {
     </div>
   );
 };
+
+const CriteriaTableForDigitalPrevention = () => {
+  const t = useTranslations();
+
+  return (
+    <div className='grid grid-cols-[max-content,_1fr] lg:grid-cols-[max-content,_1fr,_1fr]'>
+      <div className='max-lg:hidden px-10 bg-green-800 h-[3.75rem] flex items-center justify-center text-white body-m-500 rounded-tl-lg'>
+        {t('evaluation_items')}
+      </div>
+      <div className='max-lg:hidden bg-green-800 h-[3.75rem] flex items-center justify-center text-white body-m-500'>
+        {t('evaluation_description')}
+      </div>
+      <div className='max-lg:hidden bg-green-800 h-[3.75rem] flex items-center justify-center text-white body-m-500 rounded-tr-lg'>
+        {t('methodology')}
+      </div>
+
+      <IndicationColumn label='Healthcare Gap Relevance' />
+      <IndicationValue
+        content='The extent to which an intervention effectively addresses and mitigates disparities in healthcare access, quality, and outcomes. Ensure the intervention contributes to closing the healthcare gaps that exist due to gender-related factors.'
+        column='evaluation_description'
+      />
+      <IndicationValue
+        content='Assess the extent to which an intervention effectively addresses and mitigates disparities in healthcare access, quality, and outcomes. Companies must demonstrate how their intervention contributes to closing healthcare gaps that exist due to gender-related factors. This includes providing evidence that the intervention improves equitable access to healthcare services, enhances the quality of care, and leads to better health outcomes for all genders. Companies should document the specific strategies and measures they have implemented to address these disparities and provide data showing the impact of their intervention on reducing gender-based healthcare inequalities.'
+        column='methodology'
+      />
+
+      <IndicationColumn label='Efficacy/ Accuracy' />
+      <IndicationValue
+        content='Gender-segregated data for efficacy.'
+        column='evaluation_description'
+      />
+      <IndicationValue
+        content='Companies must provide evidence showing the effectiveness of their application for different genders, demonstrating that it performs well across these groups.'
+        column='methodology'
+      />
+
+      <IndicationColumn label='Accessibility' />
+      <IndicationValue
+        content={`Accessibility of UI Design, Content, Documentation and Help. Compliance with Accessibility Standards`}
+        column='evaluation_description'
+      />
+      <IndicationValue
+        content={`Ensure all users, including those with disabilities, can effectively perceive, understand, navigate, and interact with the application. Compliance with requirements and guidelines on useability for example ISO/IEC 62366, ISO 9241 or FDA.`}
+        column='methodology'
+      />
+
+      <IndicationColumn label='Affordability' />
+      <IndicationValue
+        content={`Costs associated with the application for Users, Healthcare Professionals and Organizations.`}
+        column='evaluation_description'
+      />
+      <IndicationValue
+        content={`Describe the cost model associated with the application for users, healthcare professionals, and organizations. Companies must provide information, contact or reference.`}
+        column='methodology'
+      />
+
+      <IndicationColumn label='Possible Side Effects' />
+      <IndicationValue
+        content='Evidence of any possible side effects or absences of them.'
+        column='evaluation_description'
+      />
+      <IndicationValue
+        content='Provide evidence of any possible side effects or the absence thereof. Companies need to document and present findings related to side effects.'
+        column='methodology'
+      />
+
+      <IndicationColumn label='Regulatory Compliance' />
+      <IndicationValue
+        content='Ensure that the application meets relevant regulatory requirements and ethical guidelines.'
+        column='evaluation_description'
+      />
+      <IndicationValue
+        content='Ensure that the application complies with relevant regulatory requirements and ethical guidelines. Companies must provide documentation of their compliance measures. References to GDPR, HIIPA, MDR, FDA, ISO 13485 and others'
+        column='methodology'
+      />
+    </div>
+  );
+};
+
 
 const IndicationColumn = ({ label }: { label: string }) => {
   const t = useTranslations();
