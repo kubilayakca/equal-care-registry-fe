@@ -232,8 +232,8 @@ const LOSARTAN_CERT = {
         {
           column: { label: 'clinical_study_participation', tooltip: 'clinical_study_participation_tooltip' },
           values: [
-            { column: 'men', type: 'number', value: 41, align: 'right' },
-            { column: 'women', type: 'number', value: 59, align: 'left', bg: 'dark', representationGap: -14 }
+            { column: 'men', type: 'number', value: 41, align: 'right', representationGap: -14 },
+            { column: 'women', type: 'number', value: 59, align: 'left', bg: 'dark' }
           ]
         },
         {
