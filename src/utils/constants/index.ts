@@ -866,12 +866,12 @@ export const COMPANIES = [MEDICSTREAM_COMPANY, Exploris_Health_AG_COMPANY, PIPRA
 export const CERTIFICATES = [
   { ...HERMAID_CERTIFICATE, type: CERTIFICATION_TYPES.femTech },
   // { ...Atorvastatin_CERT, type: CERTIFICATION_TYPES.medication },
-  { ...CAMZYOS_CERT, type: CERTIFICATION_TYPES.medication },
+  // { ...CAMZYOS_CERT, type: CERTIFICATION_TYPES.medication },
   { ...MEDICSTREAM_CERT, type: CERTIFICATION_TYPES.diagnosticTreatment },
   { ...CardioExplorerCert, type: CERTIFICATION_TYPES.aiSupportedDiagnosticTreatment },
   { ...PIPRA_CERT, type: CERTIFICATION_TYPES.aiSupportedDiagnosticTreatment },
   { ...HELLO_INSIDE_CERT, type: CERTIFICATION_TYPES.digitalPrevention },
-  { ...LOSARTAN_CERT, type: CERTIFICATION_TYPES.medication }
+  // { ...LOSARTAN_CERT, type: CERTIFICATION_TYPES.medication }
 ];
 
 export const ICON_MAPPING = {
