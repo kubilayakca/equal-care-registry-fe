@@ -51,176 +51,85 @@ export const EvaluationDetail = ({
     const t = useTranslations();
 
     // Parse percentage strings to numbers for display
-    const parsePercentage = (str: string): number => {
+    const parsePercentage = (str: string | null | undefined): number => {
+        if (!str) return 0;
         const match = str.match(/(\d+\.?\d*)/);
         return match ? parseFloat(match[1]) : 0;
     };
 
-    // Transform indication data to match Details component format
-    const transformedIndications: TransformedIndication[] = indications.map((indication: EvaluationData['evaluation']['indications'][0]) => {
-        const indicationRows: IndicationRow[] = [
+    // Parse representation gap string to number (handles negative/positive signs)
+    const parseRepresentationGap = (str: string | null | undefined): number => {
+        if (!str) return 0;
+        // Match optional sign (- or +) followed by number
+        const match = str.match(/([+-]?)(\d+\.?\d*)/);
+        if (match) {
+            const sign = match[1] === '-' ? -1 : 1;
+            return sign * parseFloat(match[2]);
+        }
+        return 0;
+    };
+
+    // Helper function to create text field values - combines columns if values are the same
+    const createTextFieldValues = (menValue: string | null, womenValue: string | null): IndicationValue[] => {
+        const menContent = menValue || '';
+        const womenContent = womenValue || '';
+
+        // If values are the same, combine into a single 'both' column
+        if (menContent === womenContent) {
+            return [
+                {
+                    column: 'both' as const,
+                    type: 'text' as const,
+                    content: menContent,
+                    align: 'left' as const,
+                },
+            ];
+        }
+
+        // Otherwise, show separate columns
+        return [
             {
-                column: { label: 'prevalence', tooltip: 'prevalence_tooltip' },
-                values: [
-                    {
-                        column: 'men' as const,
-                        type: 'number' as const,
-                        value: parsePercentage(indication.men.prevalence_in_population),
-                        align: 'right' as const,
-                        bg: 'light' as const,
-                    },
-                    {
-                        column: 'women' as const,
-                        type: 'number' as const,
-                        value: parsePercentage(indication.women.prevalence_in_population),
-                        align: 'left' as const,
-                        bg: 'dark' as const,
-                    },
-                ],
+                column: 'men' as const,
+                type: 'text' as const,
+                content: menContent,
+                align: 'left' as const,
             },
             {
+                column: 'women' as const,
+                type: 'text' as const,
+                content: womenContent,
+                align: 'left' as const,
+                bg: 'dark' as const,
+            },
+        ];
+    };
+
+    // Helper function to check if both number values are zero
+    const areBothValuesZero = (menValue: number, womenValue: number): boolean => {
+        return menValue === 0 && womenValue === 0;
+    };
+
+    // Transform indication data to match Details component format
+    const transformedIndications: TransformedIndication[] = indications.map((indication: EvaluationData['evaluation']['indications'][0]) => {
+        const indicationRows: IndicationRow[] = [];
+
+        // Gender Distribution - only add if not both zero
+        const genderDistMen = parsePercentage(indication.men.gender_distribution);
+        const genderDistWomen = parsePercentage(indication.women.gender_distribution);
+        if (!areBothValuesZero(genderDistMen, genderDistWomen)) {
+            indicationRows.push({
                 column: { label: 'gender_distribution', tooltip: 'gender_distribution_tooltip' },
                 values: [
                     {
                         column: 'men' as const,
                         type: 'number' as const,
-                        value: parsePercentage(indication.men.gender_distribution),
+                        value: genderDistMen,
                         align: 'right' as const,
                     },
                     {
                         column: 'women' as const,
                         type: 'number' as const,
-                        value: parsePercentage(indication.women.gender_distribution),
-                        align: 'left' as const,
-                        bg: 'dark' as const,
-                    },
-                ],
-            },
-            {
-                column: { label: 'clinical_study_participation', tooltip: 'clinical_study_participation_tooltip' },
-                values: [
-                    {
-                        column: 'men' as const,
-                        type: 'text' as const,
-                        content: indication.men.clinical_study_participation,
-                        align: 'left' as const,
-                    },
-                    {
-                        column: 'women' as const,
-                        type: 'text' as const,
-                        content: indication.women.clinical_study_participation,
-                        align: 'left' as const,
-                        bg: 'dark' as const,
-                    },
-                ],
-            },
-            {
-                column: { label: 'representation_gap', tooltip: 'representation_gap_tooltip' },
-                values: [
-                    {
-                        column: 'men' as const,
-                        type: 'text' as const,
-                        content: `Representation gap: ${indication.men.representation_gap}`,
-                        align: 'left' as const,
-                    },
-                    {
-                        column: 'women' as const,
-                        type: 'text' as const,
-                        content: `Representation gap: ${indication.women.representation_gap}`,
-                        align: 'left' as const,
-                        bg: 'dark' as const,
-                    },
-                ],
-            },
-            {
-                column: { label: 'efficacy/accuracy', tooltip: 'efficacy/accuracy_tooltip' },
-                values: [
-                    {
-                        column: 'men' as const,
-                        type: 'text' as const,
-                        content: indication.men.efficacy,
-                        align: 'left' as const,
-                    },
-                    {
-                        column: 'women' as const,
-                        type: 'text' as const,
-                        content: indication.women.efficacy,
-                        align: 'left' as const,
-                        bg: 'dark' as const,
-                    },
-                ],
-            },
-            {
-                column: { label: 'posology', tooltip: 'posology_tooltip' },
-                values: [
-                    {
-                        column: 'men' as const,
-                        type: 'text' as const,
-                        content: indication.men.posology,
-                        align: 'left' as const,
-                    },
-                    {
-                        column: 'women' as const,
-                        type: 'text' as const,
-                        content: indication.women.posology,
-                        align: 'left' as const,
-                        bg: 'dark' as const,
-                    },
-                ],
-            },
-            {
-                column: { label: 'dose_adjustments', tooltip: 'dose_adjustments_tooltip' },
-                values: [
-                    {
-                        column: 'men' as const,
-                        type: 'text' as const,
-                        content: indication.men.dose_adjustments,
-                        align: 'left' as const,
-                    },
-                    {
-                        column: 'women' as const,
-                        type: 'text' as const,
-                        content: indication.women.dose_adjustments,
-                        align: 'left' as const,
-                        bg: 'dark' as const,
-                    },
-                ],
-            },
-            {
-                column: { label: 'difference_in_possible_side_effects', tooltip: 'difference_in_possible_side_effects_tooltip' },
-                values: [
-                    {
-                        column: 'men' as const,
-                        type: 'text' as const,
-                        content: indication.men.difference_in_possible_side_effects,
-                        align: 'left' as const,
-                    },
-                    {
-                        column: 'women' as const,
-                        type: 'text' as const,
-                        content: indication.women.difference_in_possible_side_effects,
-                        align: 'left' as const,
-                        bg: 'dark' as const,
-                    },
-                ],
-            },
-        ];
-
-        // Add pregnancy_lactation if not null
-        if (indication.men.pregnancy_lactation !== null || indication.women.pregnancy_lactation !== null) {
-            indicationRows.push({
-                column: { label: 'pregnancy_lactation', tooltip: 'pregnancy_lactation_tooltip' },
-                values: [
-                    {
-                        column: 'men' as const,
-                        type: 'text' as const,
-                        content: indication.men.pregnancy_lactation || 'Not applicable',
-                        align: 'left' as const,
-                    },
-                    {
-                        column: 'women' as const,
-                        type: 'text' as const,
-                        content: indication.women.pregnancy_lactation || 'Not applicable',
+                        value: genderDistWomen,
                         align: 'left' as const,
                         bg: 'dark' as const,
                     },
@@ -228,24 +137,74 @@ export const EvaluationDetail = ({
             });
         }
 
+        // Clinical Study Participation - only add if not both zero
+        const clinicalStudyMen = parsePercentage(indication.men.clinical_study_participation);
+        const clinicalStudyWomen = parsePercentage(indication.women.clinical_study_participation);
+        if (!areBothValuesZero(clinicalStudyMen, clinicalStudyWomen)) {
+            const womenValue: IndicationValue = {
+                column: 'women' as const,
+                type: 'number' as const,
+                value: clinicalStudyWomen,
+                align: 'left' as const,
+                bg: 'dark' as const,
+            };
+
+            // Only add representation gap if there's actual data
+            const representationGapValue = parseRepresentationGap(indication.women.representation_gap);
+            if (indication.women.representation_gap && representationGapValue !== 0) {
+                womenValue.representationGap = representationGapValue;
+            }
+
+            indicationRows.push({
+                column: { label: 'clinical_study_participation', tooltip: 'clinical_study_participation_tooltip' },
+                values: [
+                    {
+                        column: 'men' as const,
+                        type: 'number' as const,
+                        value: clinicalStudyMen,
+                        align: 'right' as const,
+                    },
+                    womenValue,
+                ],
+            });
+        }
+
+        // Add text fields
+        indicationRows.push({
+            column: { label: 'efficacy/accuracy', tooltip: 'efficacy/accuracy_tooltip' },
+            values: createTextFieldValues(indication.men.efficacy, indication.women.efficacy),
+        });
+        indicationRows.push({
+            column: { label: 'posology', tooltip: 'posology_tooltip' },
+            values: createTextFieldValues(indication.men.posology, indication.women.posology),
+        });
+        indicationRows.push({
+            column: { label: 'dose_adjustments', tooltip: 'dose_adjustments_tooltip' },
+            values: createTextFieldValues(indication.men.dose_adjustments, indication.women.dose_adjustments),
+        });
+        indicationRows.push({
+            column: { label: 'difference_in_possible_side_effects', tooltip: 'difference_in_possible_side_effects_tooltip' },
+            values: createTextFieldValues(indication.men.difference_in_possible_side_effects, indication.women.difference_in_possible_side_effects),
+        });
+
+        // Add pregnancy_lactation if not null
+        if (indication.men.pregnancy_lactation !== null || indication.women.pregnancy_lactation !== null) {
+            indicationRows.push({
+                column: { label: 'pregnancy_lactation', tooltip: 'pregnancy_lactation_tooltip' },
+                values: createTextFieldValues(
+                    indication.men.pregnancy_lactation || 'Not applicable',
+                    indication.women.pregnancy_lactation || 'Not applicable'
+                ),
+            });
+        }
+
         // Add sex_gender_specific_nonclinical_findings
         indicationRows.push({
             column: { label: 'sex_gender_specific_nonclinical_findings', tooltip: 'sex_gender_specific_nonclinical_findings_tooltip' },
-            values: [
-                {
-                    column: 'men' as const,
-                    type: 'text' as const,
-                    content: indication.men.sex_gender_specific_nonclinical_findings,
-                    align: 'left' as const,
-                },
-                {
-                    column: 'women' as const,
-                    type: 'text' as const,
-                    content: indication.women.sex_gender_specific_nonclinical_findings,
-                    align: 'left' as const,
-                    bg: 'dark' as const,
-                },
-            ],
+            values: createTextFieldValues(
+                indication.men.sex_gender_specific_nonclinical_findings,
+                indication.women.sex_gender_specific_nonclinical_findings
+            ),
         });
 
         // Add possible_side_effects
@@ -449,7 +408,7 @@ const IndicationValue = ({
                             >
                                 {value}%
                             </div>
-                            {representationGap && (
+                            {representationGap !== undefined && representationGap !== null && representationGap !== 0 && (
                                 <div className={`flex ${align === 'left' ? 'lg:flex-row-reverse' : ''}`}>
                                     <div
                                         className={`text-blue-85 m-2 flex 
@@ -508,7 +467,7 @@ const AccordionItem = ({
             {...rest}
             header={({ state }) => (
                 <div className='flex gap-4 w-full items-center text-left'>
-                    <div className='w-6 h-6 rounded-full bg-green-500 text-white text-xs flex items-center justify-center'>
+                    <div className='w-6 h-6 rounded-full bg-green-500 text-white text-xs flex items-center justify-center shrink-0'>
                         {number}
                     </div>
                     {header}
