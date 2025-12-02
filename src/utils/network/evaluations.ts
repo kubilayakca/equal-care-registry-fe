@@ -128,7 +128,7 @@ export async function fetchInnIndex(): Promise<InnIndex> {
 
 export async function fetchEvaluation(inn: string, id: string): Promise<EvaluationData> {
     try {
-        const key = `registry/output/INNs/${inn}/${id}/evaluation/evaluation_v1.json`;
+        const key = `registry/output/INNs/${inn}/${id}/evaluation/evaluation.json`;
         const jsonString = await getObjectFromS3(key);
         return JSON.parse(jsonString) as EvaluationData;
     } catch (error) {
