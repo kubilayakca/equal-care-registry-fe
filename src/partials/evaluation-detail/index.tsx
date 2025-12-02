@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useTranslations } from 'next-intl';
 import { ICON_MAPPING, CERTIFICATION_TYPES } from '@/utils/constants';
 import { Chip } from '@/components/chip';
@@ -16,6 +17,28 @@ import { Icon } from '@/components/icon';
 import { InfoTooltip } from '../info-tooltip';
 import { SectionHeader } from '@/components/section-header';
 import { type EvaluationData } from '@/utils/network/evaluations';
+
+type IndicationValue = {
+    column: 'men' | 'women' | 'both';
+    type: 'text' | 'number';
+    value?: number;
+    content?: string;
+    bg?: 'light' | 'dark';
+    align?: 'left' | 'right';
+    representationGap?: number;
+    alignContent?: 'center';
+};
+
+type IndicationRow = {
+    column: { label: string; tooltip: string };
+    values: IndicationValue[];
+};
+
+type TransformedIndication = {
+    title: string;
+    description: string;
+    indicationRows: IndicationRow[];
+};
 
 export const EvaluationDetail = ({
     evaluationData,
@@ -34,24 +57,24 @@ export const EvaluationDetail = ({
     };
 
     // Transform indication data to match Details component format
-    const transformedIndications = indications.map((indication: EvaluationData['evaluation']['indications'][0]) => {
-        const indicationRows = [
+    const transformedIndications: TransformedIndication[] = indications.map((indication: EvaluationData['evaluation']['indications'][0]) => {
+        const indicationRows: IndicationRow[] = [
             {
                 column: { label: 'prevalence', tooltip: 'prevalence_tooltip' },
                 values: [
                     {
-                        column: 'men',
-                        type: 'number',
+                        column: 'men' as const,
+                        type: 'number' as const,
                         value: parsePercentage(indication.men.prevalence_in_population),
-                        align: 'right',
-                        bg: 'light',
+                        align: 'right' as const,
+                        bg: 'light' as const,
                     },
                     {
-                        column: 'women',
-                        type: 'number',
+                        column: 'women' as const,
+                        type: 'number' as const,
                         value: parsePercentage(indication.women.prevalence_in_population),
-                        align: 'left',
-                        bg: 'dark',
+                        align: 'left' as const,
+                        bg: 'dark' as const,
                     },
                 ],
             },
@@ -59,17 +82,17 @@ export const EvaluationDetail = ({
                 column: { label: 'gender_distribution', tooltip: 'gender_distribution_tooltip' },
                 values: [
                     {
-                        column: 'men',
-                        type: 'number',
+                        column: 'men' as const,
+                        type: 'number' as const,
                         value: parsePercentage(indication.men.gender_distribution),
-                        align: 'right',
+                        align: 'right' as const,
                     },
                     {
-                        column: 'women',
-                        type: 'number',
+                        column: 'women' as const,
+                        type: 'number' as const,
                         value: parsePercentage(indication.women.gender_distribution),
-                        align: 'left',
-                        bg: 'dark',
+                        align: 'left' as const,
+                        bg: 'dark' as const,
                     },
                 ],
             },
@@ -77,17 +100,17 @@ export const EvaluationDetail = ({
                 column: { label: 'clinical_study_participation', tooltip: 'clinical_study_participation_tooltip' },
                 values: [
                     {
-                        column: 'men',
-                        type: 'text',
+                        column: 'men' as const,
+                        type: 'text' as const,
                         content: indication.men.clinical_study_participation,
-                        align: 'left',
+                        align: 'left' as const,
                     },
                     {
-                        column: 'women',
-                        type: 'text',
+                        column: 'women' as const,
+                        type: 'text' as const,
                         content: indication.women.clinical_study_participation,
-                        align: 'left',
-                        bg: 'dark',
+                        align: 'left' as const,
+                        bg: 'dark' as const,
                     },
                 ],
             },
@@ -95,17 +118,17 @@ export const EvaluationDetail = ({
                 column: { label: 'representation_gap', tooltip: 'representation_gap_tooltip' },
                 values: [
                     {
-                        column: 'men',
-                        type: 'text',
+                        column: 'men' as const,
+                        type: 'text' as const,
                         content: `Representation gap: ${indication.men.representation_gap}`,
-                        align: 'left',
+                        align: 'left' as const,
                     },
                     {
-                        column: 'women',
-                        type: 'text',
+                        column: 'women' as const,
+                        type: 'text' as const,
                         content: `Representation gap: ${indication.women.representation_gap}`,
-                        align: 'left',
-                        bg: 'dark',
+                        align: 'left' as const,
+                        bg: 'dark' as const,
                     },
                 ],
             },
@@ -113,17 +136,17 @@ export const EvaluationDetail = ({
                 column: { label: 'efficacy/accuracy', tooltip: 'efficacy/accuracy_tooltip' },
                 values: [
                     {
-                        column: 'men',
-                        type: 'text',
+                        column: 'men' as const,
+                        type: 'text' as const,
                         content: indication.men.efficacy,
-                        align: 'left',
+                        align: 'left' as const,
                     },
                     {
-                        column: 'women',
-                        type: 'text',
+                        column: 'women' as const,
+                        type: 'text' as const,
                         content: indication.women.efficacy,
-                        align: 'left',
-                        bg: 'dark',
+                        align: 'left' as const,
+                        bg: 'dark' as const,
                     },
                 ],
             },
@@ -131,17 +154,17 @@ export const EvaluationDetail = ({
                 column: { label: 'posology', tooltip: 'posology_tooltip' },
                 values: [
                     {
-                        column: 'men',
-                        type: 'text',
+                        column: 'men' as const,
+                        type: 'text' as const,
                         content: indication.men.posology,
-                        align: 'left',
+                        align: 'left' as const,
                     },
                     {
-                        column: 'women',
-                        type: 'text',
+                        column: 'women' as const,
+                        type: 'text' as const,
                         content: indication.women.posology,
-                        align: 'left',
-                        bg: 'dark',
+                        align: 'left' as const,
+                        bg: 'dark' as const,
                     },
                 ],
             },
@@ -149,17 +172,17 @@ export const EvaluationDetail = ({
                 column: { label: 'dose_adjustments', tooltip: 'dose_adjustments_tooltip' },
                 values: [
                     {
-                        column: 'men',
-                        type: 'text',
+                        column: 'men' as const,
+                        type: 'text' as const,
                         content: indication.men.dose_adjustments,
-                        align: 'left',
+                        align: 'left' as const,
                     },
                     {
-                        column: 'women',
-                        type: 'text',
+                        column: 'women' as const,
+                        type: 'text' as const,
                         content: indication.women.dose_adjustments,
-                        align: 'left',
-                        bg: 'dark',
+                        align: 'left' as const,
+                        bg: 'dark' as const,
                     },
                 ],
             },
@@ -167,17 +190,17 @@ export const EvaluationDetail = ({
                 column: { label: 'difference_in_possible_side_effects', tooltip: 'difference_in_possible_side_effects_tooltip' },
                 values: [
                     {
-                        column: 'men',
-                        type: 'text',
+                        column: 'men' as const,
+                        type: 'text' as const,
                         content: indication.men.difference_in_possible_side_effects,
-                        align: 'left',
+                        align: 'left' as const,
                     },
                     {
-                        column: 'women',
-                        type: 'text',
+                        column: 'women' as const,
+                        type: 'text' as const,
                         content: indication.women.difference_in_possible_side_effects,
-                        align: 'left',
-                        bg: 'dark',
+                        align: 'left' as const,
+                        bg: 'dark' as const,
                     },
                 ],
             },
@@ -189,17 +212,17 @@ export const EvaluationDetail = ({
                 column: { label: 'pregnancy_lactation', tooltip: 'pregnancy_lactation_tooltip' },
                 values: [
                     {
-                        column: 'men',
-                        type: 'text',
+                        column: 'men' as const,
+                        type: 'text' as const,
                         content: indication.men.pregnancy_lactation || 'Not applicable',
-                        align: 'left',
+                        align: 'left' as const,
                     },
                     {
-                        column: 'women',
-                        type: 'text',
+                        column: 'women' as const,
+                        type: 'text' as const,
                         content: indication.women.pregnancy_lactation || 'Not applicable',
-                        align: 'left',
-                        bg: 'dark',
+                        align: 'left' as const,
+                        bg: 'dark' as const,
                     },
                 ],
             });
@@ -210,17 +233,17 @@ export const EvaluationDetail = ({
             column: { label: 'sex_gender_specific_nonclinical_findings', tooltip: 'sex_gender_specific_nonclinical_findings_tooltip' },
             values: [
                 {
-                    column: 'men',
-                    type: 'text',
+                    column: 'men' as const,
+                    type: 'text' as const,
                     content: indication.men.sex_gender_specific_nonclinical_findings,
-                    align: 'left',
+                    align: 'left' as const,
                 },
                 {
-                    column: 'women',
-                    type: 'text',
+                    column: 'women' as const,
+                    type: 'text' as const,
                     content: indication.women.sex_gender_specific_nonclinical_findings,
-                    align: 'left',
-                    bg: 'dark',
+                    align: 'left' as const,
+                    bg: 'dark' as const,
                 },
             ],
         });
@@ -230,10 +253,10 @@ export const EvaluationDetail = ({
             column: { label: 'possible_side_effects', tooltip: 'possible_side_effects_tooltip' },
             values: [
                 {
-                    column: 'both',
-                    type: 'text',
+                    column: 'both' as const,
+                    type: 'text' as const,
                     content: indication.possible_side_effects.join(', '),
-                    align: 'left',
+                    align: 'left' as const,
                 },
             ],
         });
@@ -301,7 +324,7 @@ export const EvaluationDetail = ({
     );
 };
 
-const EvaluationDetails = ({ indications }: { indications: any[] }) => {
+const EvaluationDetails = ({ indications }: { indications: TransformedIndication[] }) => {
     const t = useTranslations();
     const providerValue = useAccordionProvider({
         allowMultiple: true,
@@ -313,7 +336,7 @@ const EvaluationDetails = ({ indications }: { indications: any[] }) => {
         <div className='w-full bg-white rounded-xl py-8'>
             <SectionHeader label={t('indications')} className='mx-6' />
             <ControlledAccordion providerValue={providerValue}>
-                {indications.map((indication: any, i: number) => {
+                {indications.map((indication, i) => {
                     return (
                         <AccordionItem
                             key={i}
@@ -329,30 +352,29 @@ const EvaluationDetails = ({ indications }: { indications: any[] }) => {
                                 <div className='max-lg:hidden bg-blue-2 h-[3.75rem] flex items-center justify-center text-white body-m-500 rounded-tr-lg'>
                                     {t('women')}
                                 </div>
-                                {indication.indicationRows.map((row: any, i: number) => {
+                                {indication.indicationRows.map((row, rowIndex) => {
                                     return (
-                                        <>
+                                        <div key={rowIndex}>
                                             <IndicationColumn
-                                                key={i}
                                                 label={t(row.column.label)}
                                                 tooltip={t(row.column.tooltip)}
                                             />
-                                            {row.values.map((val: any, j: number) => {
+                                            {row.values.map((val, valIndex) => {
                                                 return (
                                                     <IndicationValue
-                                                        key={j}
-                                                        column={val.column as any}
-                                                        type={val.type as any}
-                                                        value={val.value as any}
-                                                        content={val.content as any}
-                                                        bg={val.bg as any}
-                                                        align={val.align as any}
-                                                        representationGap={val.representationGap as any}
-                                                        alignContent={val.alignContent as any}
+                                                        key={valIndex}
+                                                        column={val.column}
+                                                        type={val.type}
+                                                        value={val.value}
+                                                        content={val.content}
+                                                        bg={val.bg}
+                                                        align={val.align}
+                                                        representationGap={val.representationGap}
+                                                        alignContent={val.alignContent}
                                                     />
                                                 );
                                             })}
-                                        </>
+                                        </div>
                                     );
                                 })}
                             </div>
@@ -480,36 +502,38 @@ const AccordionItem = ({
     header,
     number,
     ...rest
-}: AccordionItemProps & { number: number }) => (
-    <Item
-        {...rest}
-        header={({ state }) => (
-            <div className='flex gap-4 w-full items-center text-left'>
-                <div className='w-6 h-6 rounded-full bg-green-500 text-white text-xs flex items-center justify-center'>
-                    {number}
-                </div>
-                {header as any}
-                <div className='ml-auto'>
-                    <div className='text-blue-2 border border-green-400 rounded h-9 w-11 flex items-center justify-center'>
-                        <Icon
-                            type={state.status === 'entered' || state.status === 'entering' ? 'subtract-large' : 'add-large'}
-                            size='small'
-                        />
+}: AccordionItemProps & { number: number; header: string | React.ReactNode }) => {
+    return (
+        <Item
+            {...rest}
+            header={({ state }) => (
+                <div className='flex gap-4 w-full items-center text-left'>
+                    <div className='w-6 h-6 rounded-full bg-green-500 text-white text-xs flex items-center justify-center'>
+                        {number}
+                    </div>
+                    {header}
+                    <div className='ml-auto'>
+                        <div className='text-blue-2 border border-green-400 rounded h-9 w-11 flex items-center justify-center'>
+                            <Icon
+                                type={state.status === 'entered' || state.status === 'entering' ? 'subtract-large' : 'add-large'}
+                                size='small'
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
-        )}
-        headingProps={{
-            className: 'body-l-400 text-blue-2',
-        }}
-        buttonProps={{
-            className: 'w-full px-6 py-2 flex hover:bg-blue-4',
-        }}
-        contentProps={{
-            style: {
-                transition: 'height 0.25s cubic-bezier(0, 0, 0, 1)',
-            },
-        }}
-    />
-);
+            )}
+            headingProps={{
+                className: 'body-l-400 text-blue-2',
+            }}
+            buttonProps={{
+                className: 'w-full px-6 py-2 flex hover:bg-blue-4',
+            }}
+            contentProps={{
+                style: {
+                    transition: 'height 0.25s cubic-bezier(0, 0, 0, 1)',
+                },
+            }}
+        />
+    );
+};
 
