@@ -8,6 +8,7 @@ import {
   ICON_MAPPING,
   ROUTES,
 } from '@/utils/constants';
+import { EVALUATION_DATA } from '@/utils/constants/evaluations';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useMemo } from 'react';
@@ -18,6 +19,7 @@ export const Homepage = () => {
       <Banner />
       <Certifications />
       <Certificates />
+      <Evaluations />
       <Companies />
     </>
   );
@@ -146,23 +148,45 @@ const Certificates = () => {
   );
 };
 
+const Evaluations = () => {
+  const t = useTranslations();
+
+  // List of evaluation slugs
+  const evaluationSlugs = ['vyepti-eptinezumab'];
+
+  return (
+    <div className='bg-blue-4 py-12 eq-px'>
+      <div className='eq-container flex flex-col gap-6'>
+        <div className='text-blue-2 font-gabarito heading-05-500'>
+          {t('evaluations_title')}
+        </div>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-6'>
+          {evaluationSlugs.map((slug, i) => {
+            return <EvaluationItemCard key={i} slug={slug} />;
+          })}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const CertificateItemCard = ({ item }: { item: (typeof CERTIFICATES)[0] }) => {
   const route = useMemo(() => {
     console.log(item.slug);
     switch (item.type) {
       case CERTIFICATION_TYPES.medication:
-      return ROUTES.certificateMedication;
+        return ROUTES.certificateMedication;
       case CERTIFICATION_TYPES.digitalPrevention:
-      return ROUTES.certificatePrevention;
+        return ROUTES.certificatePrevention;
       case CERTIFICATION_TYPES.diagnosticTreatment:
       case CERTIFICATION_TYPES.digitalDiagnosticTreatment:
       case CERTIFICATION_TYPES.aiSupportedDiagnosticTreatment:
-      return ROUTES.certificateTreatment;
+        return ROUTES.certificateTreatment;
       case CERTIFICATION_TYPES.femTech:
       case CERTIFICATION_TYPES.maleTech:
-      return ROUTES.certificateService;
+        return ROUTES.certificateService;
       default:
-      return '';
+        return '';
     }
   }, [item.type]);
 
@@ -181,6 +205,34 @@ const CertificateItemCard = ({ item }: { item: (typeof CERTIFICATES)[0] }) => {
       <div>
         <div className='text-blue-2 body-l-500'>{item.name}</div>
         <div className='text-blue-60 body-s-400'>{item.company.name}</div>
+      </div>
+    </Link>
+  );
+};
+
+const EvaluationItemCard = ({ slug }: { slug: string }) => {
+  const t = useTranslations();
+
+  // Map slug to evaluation data
+  const evaluationName = slug === 'vyepti-eptinezumab'
+    ? EVALUATION_DATA.general_info.certification_item
+    : '';
+
+  return (
+    <Link
+      href={
+        {
+          pathname: ROUTES.certificateEvaluation,
+          params: { slug },
+        } as any
+      }
+    >
+      <div className='h-[17.5rem] bg-white rounded-xl mb-2.5 flex items-center justify-center'>
+        <Image src={ICON_MAPPING[CERTIFICATION_TYPES.medication]} alt='' width={64} height={64} />
+      </div>
+      <div>
+        <div className='text-blue-2 body-l-500'>{evaluationName}</div>
+        <div className='text-blue-60 body-s-400'>{t('evaluation_badge')}</div>
       </div>
     </Link>
   );

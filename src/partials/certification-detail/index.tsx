@@ -5,25 +5,32 @@ import { CERTIFICATES, ICON_MAPPING } from '@/utils/constants';
 import { Chip } from '@/components/chip';
 import { Badge } from './badge';
 import { Company } from './company';
+import { Source } from './source';
 import { Details } from './details';
 import Image from 'next/image';
 import NextLink from 'next/link';
 
 export const CertificationDetail = ({
   certificate,
+  isEvaluation = false,
 }: {
-  certificate: (typeof CERTIFICATES)[0];
+  certificate: (typeof CERTIFICATES)[0] | any;
+  isEvaluation?: boolean;
 }) => {
   return (
     <div className='lg:px-5 bg-blue-4'>
       <div className='eq-container mt-[3.75rem] mb-5'>
         {certificate && (
           <div className='flex flex-col gap-5'>
-            <CertificateItemCard item={certificate} />
+            <CertificateItemCard item={certificate} isEvaluation={isEvaluation} />
             <Details certificate={certificate} />
             <div className='flex max-md:flex-col gap-5'>
-              <Badge type={certificate.type} />
-              <Company company={certificate.company} />
+              <Badge type={certificate.type} isEvaluation={isEvaluation} />
+              {isEvaluation && certificate.source ? (
+                <Source source={certificate.source} />
+              ) : (
+                !isEvaluation && certificate.company && <Company company={certificate.company} />
+              )}
             </div>
           </div>
         )}
@@ -32,7 +39,7 @@ export const CertificationDetail = ({
   );
 };
 
-const CertificateItemCard = ({ item }: { item: (typeof CERTIFICATES)[0] }) => {
+const CertificateItemCard = ({ item, isEvaluation = false }: { item: (typeof CERTIFICATES)[0] | any; isEvaluation?: boolean }) => {
   const t = useTranslations();
 
   return (
@@ -64,16 +71,25 @@ const CertificateItemCard = ({ item }: { item: (typeof CERTIFICATES)[0] }) => {
         </div>
         <div className='bg-blue-20 mt-6 mb-4 h-px' />
         <div className='grid grid-cols-[max-content,_auto] md:grid-cols-[minmax(max-content,_auto),_auto] lg:grid-cols-[minmax(12.5rem,_max-content),_auto] gap-5 lg:gap-4'>
-          <div className='body-l-500 text-blue-2'>{t('company')}:</div>
-          <div className='text-green-500 body-m-400'>
-            <NextLink
-              href={item.company.website}
-              target='_blank'
-              rel='nofollow'
-            >
-              {item.company.name}
-            </NextLink>
-          </div>
+          {isEvaluation && item.source ? (
+            <>
+              <div className='body-l-500 text-blue-2'>{t('source')}:</div>
+              <div className='text-blue-85 body-m-400'>{item.source.name}</div>
+            </>
+          ) : !isEvaluation && item.company && (
+            <>
+              <div className='body-l-500 text-blue-2'>{t('company')}:</div>
+              <div className='text-green-500 body-m-400'>
+                <NextLink
+                  href={item.company.website}
+                  target='_blank'
+                  rel='nofollow'
+                >
+                  {item.company.name}
+                </NextLink>
+              </div>
+            </>
+          )}
           {/* <div className='body-l-500 text-blue-2'>{t('atc_code')}:</div>
           <div className='text-gray-500 body-m-400 flex items-center gap-2'>
             <div className='pt-0.5'>{item.atc.code}</div>
@@ -81,25 +97,25 @@ const CertificateItemCard = ({ item }: { item: (typeof CERTIFICATES)[0] }) => {
               <InfoTooltip text={item.atc.description} />
             </div>
           </div> */}
-          {/* @ts-ignore */} 
-          {item.ingredients?.length > 0 && 
-          (
-            <>
-              <div className='body-l-500 text-blue-2'>
-                {t('active_ingredients')}:
-              </div>
-              <div className='flex gap-2 flex-wrap'>
-                {/* @ts-ignore */} 
-                {item.ingredients.map((ing, i) => {
-                  return (
-                    <Chip key={i} icon={ing.icon}>
-                      {ing.name}
-                    </Chip>
-                  );
-                })}
-              </div>
-            </>
-          )}
+          {/* @ts-ignore */}
+          {item.ingredients?.length > 0 &&
+            (
+              <>
+                <div className='body-l-500 text-blue-2'>
+                  {t('active_ingredients')}:
+                </div>
+                <div className='flex gap-2 flex-wrap'>
+                  {/* @ts-ignore */}
+                  {item.ingredients.map((ing, i) => {
+                    return (
+                      <Chip key={i} icon={ing.icon}>
+                        {ing.name}
+                      </Chip>
+                    );
+                  })}
+                </div>
+              </>
+            )}
           {/* <div className='body-l-500 text-blue-2'>{t('last_updated')}:</div> */}
           {/* <div className='text-gray-500 body-m-400'>
             {format(new Date(item.lastUpdated), 'dd MMM yyyy')}

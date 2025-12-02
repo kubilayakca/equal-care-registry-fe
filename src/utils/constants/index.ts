@@ -17,6 +17,7 @@ export const ROUTES = {
   certificateMedication: '/medication/[slug]',
   certificateTreatment: '/treatment/[slug]',
   certificateService: '/service/[slug]',
+  certificateEvaluation: '/evaluation/[slug]',
 };
 
 export const CERTIFICATION_TYPES = {
@@ -823,7 +824,7 @@ const MEDICSTREAM_CERT = {
         {
           column: { label: 'personalization', tooltip: 'personalization_tooltip' },
           values: [
-            { column: 'both', type: 'text', content: `medicstream’s core value is the enablement of personalized health content curated by healthcare professionals for the patient. Therefore, the possibilities of personalization are given to a maximum degree.`, align: 'left' }
+            { column: 'both', type: 'text', content: `medicstream's core value is the enablement of personalized health content curated by healthcare professionals for the patient. Therefore, the possibilities of personalization are given to a maximum degree.`, align: 'left' }
           ]
         },
         {

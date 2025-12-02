@@ -11,17 +11,21 @@
     "global": "Global",
     "de": "Germany"
   },
-
   "equalcare": "EQUAL CARE®",
   "both": "Common",
   "copyright": "© {year} EQUAL CARE AG",
   "company_address": "Baarermattstr. 8b, CH-6340\n Baar, Switzerland",
   "company_email": "mail@equal-care.org",
-
   "certifications_title": "Certifications of EQUAL CARE®",
   "certificates_title": "Products and Services Certified by EQUAL CARE®",
+  "evaluations_title": "Equalcare Evaluations",
+  "evaluation_badge": "EQUAL CARE® Evaluation",
+  "evaluation_badge_title": "EQUAL CARE® Evaluations",
+  "source": "Source",
+  "source_name": "Source Name",
+  "source_url": "Source URL",
+  "prevalence_source": "Prevalence Source",
   "companies_title": "Companies Working With EQUAL CARE®",
-
   "company": "Company",
   "website": "Website",
   "address": "Address",
@@ -47,11 +51,9 @@
   "page_not_found": "Page Not Found",
   "page_not_found_description": "The page you are looking for may have been removed or temporarily unavailable. You can return to our homepage by clicking the button below.",
   "return_to_homepage": "Back To Home",
-
   "our_address": "Our Address",
   "contact_us": "Contact Us",
   "follow_us": "Follow Us",
-
   "certification_type_medication": "Medication",
   "certification_type_diagnostic_treatment": "Diagnostic / Treatment",
   "certification_type_digital_diagnostic_treatment": "Digital Diagnostic / Treatment",
@@ -59,134 +61,98 @@
   "certification_type_digital_prevention": "Digital Prevention",
   "certification_type_femtech": "FemTech",
   "certification_type_maletech": "MaleTech",
-
   "indications_1_title": "Heart failure with reduced ejection fraction",
   "indications_1_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
-
   "indications_2_title": "Type 2 diabetes mellitus",
   "indications_2_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
-
   "indications_3_title": "Heart failure with preserved ejection fraction",
   "indications_3_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
-
   "indications_4_title": "Renal insufficiency, chronic diseases",
   "indications_4_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
-
   "indications_5_title": "Type 2 diabetes mellitus",
   "indications_5_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
-
   "indications_6_title": "Heart failure with preserved ejection fraction",
   "indications_6_description": "Pregabalin is indicated in adults for the treatment of symptomatic chronic heart failure.",
-
   "prevalence": "Prevalence in Population",
   "prevalence_tooltip": "Prevalence",
-
   "gender_distribution": "Gender Distribution of Population",
   "gender_distribution_tooltip": "Gender distribution of population",
-
   "clinical_study_participation": "Clinical Study Participation",
   "clinical_study_participation_tooltip": "Clinical Study Participation",
-
   "study_participation": "Study Participation",
   "study_participation_tooltip": "Study Participation",
-
   "initial_study_participation": "Initial Study Participation",
   "initial_study_participation_tooltip": "Initial Study Participation",
-
   "representation_gap": "Representation Gap",
   "representation_gap_tooltip": "Representation Gap",
-
   "training_data_distribution": "Training Data Distribution",
   "training_data_distribution_tooltip": "Training Data Distribution",
-
   "training_data_quality": "Training Data Quality",
   "training_data_quality_tooltip": "Training Data Quality",
-
   "validation_data_quality": "Validation Data Quality",
   "validation_data_quality_tooltip": "Validation Data Quality",
-
   "algorithm_adaptability": "Algorithm Adaptability",
   "algorithm_adaptability_tooltip": "Algorithm Adaptability",
-
   "transparency": "Transparency",
   "transparency_tooltip": "Transparency",
-
   "validation_data_distribution": "Validation Data Distribution",
   "validation_data_distribution_tooltip": "Validation Data Distribution",
-
   "accuracy": "Accuracy",
   "accuracy_tooltip": "Accuracy",
-
   "accessibility": "Accessibility",
   "accessibility_tooltip": "Accessibility",
-
   "affordability": "Affordability",
   "affordability_tooltip": "Affordability",
-
   "healthcare_gap_closure": "Healthcare Gap Closure",
   "healthcare_gap_closure_tooltip": "Training Data Distribution",
-
   "healthcare_gap_relevance": "Healthcare Gap Relevance",
   "healthcare_gap_relevance_tooltip": "Healthcare Gap Relevance",
-
   "level_of_evidence": "Level of Evidence",
   "level_of_evidence_tooltip": "Level of Evidence",
-
   "scientific_evidence": "Scientific Evidence",
   "scientific_evidence_tooltip": "Scientific Evidence",
-
   "difference_in_side_effects": "Difference in Possible Side Effects",
   "difference_in_side_effects_tooltip": "Difference in Possible Side Effects",
-
   "efficacy/accuracy": "Efficacy/Accuracy",
   "efficacy/accuracy_tooltip": "Efficacy/Accuracy",
-
   "efficacy": "Efficacy",
   "efficacy_tooltip": "Efficacy",
-
   "study_representation": "Study Representation",
   "study_representation_tooltip": "Study Representation",
-
   "regulatory_compliance": "Regulatory Compliance",
   "regulatory_compliance_tooltip": "Regulatory Compliance",
-
   "functionality": "Functionality",
   "functionality_tooltip": "Functionality",
-
   "personalization": "Personalization",
   "personalization_tooltip": "Personalization",
-
   "posology": "Posology",
   "posology_tooltip": "Posology",
+  "dose_adjustments": "Dose Adjustments",
+  "dose_adjustments_tooltip": "Dose Adjustments",
+  "pregnancy_lactation": "Pregnancy and Lactation",
+  "pregnancy_lactation_tooltip": "Pregnancy and Lactation",
+  "sex_gender_specific_nonclinical_findings": "Sex/Gender-Specific Nonclinical Findings",
+  "sex_gender_specific_nonclinical_findings_tooltip": "Sex/Gender-Specific Nonclinical Findings",
   "difference_in_possible_side_effects": "Difference in Possible Side Effects",
   "difference_in_possible_side_effects_tooltip": "Difference in Possible Side Effects",
   "possible_side_effects": "Possible Side Effects",
   "possible_side_effects_tooltip": "Possible Side Effects",
-
   "hero_banner_title": "Ensuring Sex- and Gender-Balance \nin Medical Testing for Better Care",
   "hero_banner_subtitle": "75% of medical intervention do not have the same effect on men and women. When we develop treatments we need to test on everyone that might use them. EQUAL CARE certifies prevention, diagnostic and treatments with sex- and gender-balanced clinical data.",
-
   "page_home_title": "Registry",
   "page_home_description": "",
-
   "page_medication_title": "Registry",
   "page_medication_description": "",
-
   "page_diagnostic_treatment_title": "Registry",
   "page_diagnostic_treatment_description": "",
-
   "page_digital_diagnostic_treatment_title": "Registry",
   "page_digital_diagnostic_treatment_description": "",
-
   "page_digital_prevention_title": "Registry",
   "page_digital_prevention_description": "",
-
   "page_ai_supported_diagnostic_treatment_title": "Registry",
   "page_ai_supported_diagnostic_treatment_description": "",
-
   "page_femaletech_title": "Registry",
   "page_femaletech_description": "",
-
   "page_maletech_title": "Registry",
   "page_maletech_description": ""
 }
