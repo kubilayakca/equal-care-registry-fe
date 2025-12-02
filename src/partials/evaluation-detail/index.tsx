@@ -354,7 +354,7 @@ const EvaluationDetails = ({ indications }: { indications: TransformedIndication
                                 </div>
                                 {indication.indicationRows.map((row, rowIndex) => {
                                     return (
-                                        <div key={rowIndex}>
+                                        <React.Fragment key={rowIndex}>
                                             <IndicationColumn
                                                 label={t(row.column.label)}
                                                 tooltip={t(row.column.tooltip)}
@@ -374,7 +374,7 @@ const EvaluationDetails = ({ indications }: { indications: TransformedIndication
                                                     />
                                                 );
                                             })}
-                                        </div>
+                                        </React.Fragment>
                                     );
                                 })}
                             </div>
