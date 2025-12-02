@@ -15,49 +15,7 @@ import {
 import { Icon } from '@/components/icon';
 import { InfoTooltip } from '../info-tooltip';
 import { SectionHeader } from '@/components/section-header';
-
-type EvaluationData = {
-    general_info: {
-        certification_item: string;
-        description: string;
-        item_type: string;
-        active_ingredient: string;
-        therapeutic_area: string;
-        disease_area: string;
-        indications: string[];
-        source: string;
-        source_url: string | null;
-    };
-    indications: Array<{
-        indication_name: string;
-        men: {
-            gender_distribution: string;
-            prevalence_in_population: string;
-            clinical_study_participation: string;
-            representation_gap: string;
-            efficacy: string;
-            posology: string;
-            dose_adjustments: string;
-            difference_in_possible_side_effects: string;
-            pregnancy_lactation: string | null;
-            sex_gender_specific_nonclinical_findings: string;
-        };
-        women: {
-            gender_distribution: string;
-            prevalence_in_population: string;
-            clinical_study_participation: string;
-            representation_gap: string;
-            efficacy: string;
-            posology: string;
-            dose_adjustments: string;
-            difference_in_possible_side_effects: string;
-            pregnancy_lactation: string | null;
-            sex_gender_specific_nonclinical_findings: string;
-        };
-        prevalence_source: string;
-        possible_side_effects: string[];
-    }>;
-};
+import { type EvaluationData } from '@/utils/network/evaluations';
 
 export const EvaluationDetail = ({
     evaluationData,
@@ -66,7 +24,7 @@ export const EvaluationDetail = ({
     evaluationData: EvaluationData;
     slug: string;
 }) => {
-    const { general_info, indications } = evaluationData;
+    const { general_info, indications } = evaluationData.evaluation;
     const t = useTranslations();
 
     // Parse percentage strings to numbers for display
@@ -76,7 +34,7 @@ export const EvaluationDetail = ({
     };
 
     // Transform indication data to match Details component format
-    const transformedIndications = indications.map((indication) => {
+    const transformedIndications = indications.map((indication: EvaluationData['evaluation']['indications'][0]) => {
         const indicationRows = [
             {
                 column: { label: 'prevalence', tooltip: 'prevalence_tooltip' },

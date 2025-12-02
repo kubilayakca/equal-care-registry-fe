@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.940.0",
     "@floating-ui/react": "^0.25.4",
     "@next/third-parties": "^14.1.0",
     "@szhsin/react-accordion": "^1.2.5",

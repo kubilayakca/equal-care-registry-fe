@@ -1,10 +1,10 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { EvaluationDetail } from '@/partials/evaluation-detail';
-import { EVALUATION_DATA } from '@/utils/constants/evaluations';
+import { fetchInnIndex, fetchEvaluation, getPublishedEvaluations, generateEvaluationSlug } from '@/utils/network/evaluations';
 import { notFound } from 'next/navigation';
 
-export const revalidate = 10;
+export const revalidate = 3600; // Revalidate every hour
 
 export async function generateMetadata(
     { params: { locale, slug } }: any,
@@ -25,14 +25,30 @@ export async function generateMetadata(
 export default async function EvaluationPage({ params: { locale, slug } }: any) {
     unstable_setRequestLocale(locale);
 
-    // For now, we only have one evaluation (Eptinezumab)
-    // In the future, you can map slugs to different evaluation data
-    if (slug !== 'vyepti-eptinezumab') {
+    try {
+        // Fetch the inn_index to find the matching evaluation
+        const innIndex = await fetchInnIndex();
+        const publishedEvaluations = getPublishedEvaluations(innIndex);
+
+        // Find the evaluation that matches this slug
+        const evaluation = publishedEvaluations.find(({ inn, brandDoc }) => {
+            const evaluationSlug = generateEvaluationSlug(inn, brandDoc.id);
+            return evaluationSlug === slug;
+        });
+
+        if (!evaluation) {
+            return notFound();
+        }
+
+        // Fetch the evaluation data from S3
+        const evaluationData = await fetchEvaluation(evaluation.inn, evaluation.brandDoc.id);
+
+        const t = await getTranslations({ locale });
+
+        return <EvaluationDetail evaluationData={evaluationData} slug={slug} />;
+    } catch (error) {
+        console.error('Error loading evaluation:', error);
         return notFound();
     }
-
-    const t = await getTranslations({ locale });
-
-    return <EvaluationDetail evaluationData={EVALUATION_DATA} slug={slug} />;
 }
 

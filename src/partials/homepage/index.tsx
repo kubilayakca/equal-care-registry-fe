@@ -8,18 +8,18 @@ import {
   ICON_MAPPING,
   ROUTES,
 } from '@/utils/constants';
-import { EVALUATION_DATA } from '@/utils/constants/evaluations';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useMemo } from 'react';
+import { getPublishedEvaluations, generateEvaluationSlug, type InnIndex } from '@/utils/network/evaluations';
 
-export const Homepage = () => {
+export const Homepage = ({ innIndex }: { innIndex: InnIndex }) => {
   return (
     <>
       <Banner />
       <Certifications />
       <Certificates />
-      <Evaluations />
+      <Evaluations innIndex={innIndex} />
       <Companies />
     </>
   );
@@ -148,11 +148,9 @@ const Certificates = () => {
   );
 };
 
-const Evaluations = () => {
+const Evaluations = ({ innIndex }: { innIndex: InnIndex }) => {
   const t = useTranslations();
-
-  // List of evaluation slugs
-  const evaluationSlugs = ['vyepti-eptinezumab'];
+  const publishedEvaluations = useMemo(() => getPublishedEvaluations(innIndex), [innIndex]);
 
   return (
     <div className='bg-blue-4 py-12 eq-px'>
@@ -161,8 +159,16 @@ const Evaluations = () => {
           {t('evaluations_title')}
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-6'>
-          {evaluationSlugs.map((slug, i) => {
-            return <EvaluationItemCard key={i} slug={slug} />;
+          {publishedEvaluations.map(({ inn, brandDoc }, i) => {
+            const slug = generateEvaluationSlug(inn, brandDoc.id);
+            return (
+              <EvaluationItemCard
+                key={i}
+                slug={slug}
+                inn={inn}
+                brandDoc={brandDoc}
+              />
+            );
           })}
         </div>
       </div>
@@ -210,13 +216,16 @@ const CertificateItemCard = ({ item }: { item: (typeof CERTIFICATES)[0] }) => {
   );
 };
 
-const EvaluationItemCard = ({ slug }: { slug: string }) => {
+const EvaluationItemCard = ({
+  slug,
+  inn,
+  brandDoc,
+}: {
+  slug: string;
+  inn: string;
+  brandDoc: { brandName: string; id: string };
+}) => {
   const t = useTranslations();
-
-  // Map slug to evaluation data
-  const evaluationName = slug === 'vyepti-eptinezumab'
-    ? EVALUATION_DATA.general_info.certification_item
-    : '';
 
   return (
     <Link
@@ -231,7 +240,7 @@ const EvaluationItemCard = ({ slug }: { slug: string }) => {
         <Image src={ICON_MAPPING[CERTIFICATION_TYPES.medication]} alt='' width={64} height={64} />
       </div>
       <div>
-        <div className='text-blue-2 body-l-500'>{evaluationName}</div>
+        <div className='text-blue-2 body-l-500'>{inn}</div>
         <div className='text-blue-60 body-s-400'>{t('evaluation_badge')}</div>
       </div>
     </Link>

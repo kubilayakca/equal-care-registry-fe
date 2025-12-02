@@ -3,8 +3,9 @@ import { headers } from 'next/headers';
 import { getTranslations } from 'next-intl/server';
 import { Metadata, ResolvingMetadata } from 'next';
 import { Homepage } from '@/partials/homepage';
+import { fetchInnIndex } from '@/utils/network/evaluations';
 
-export const revalidate = 10;
+export const revalidate = 3600; // Revalidate every hour
 
 export async function generateMetadata(
   { params: { locale } }: any,
@@ -41,8 +42,9 @@ async function PageContentWrapper() {
   );
 }
 
-function PageContent() {
-  return <Homepage />;
+async function PageContent() {
+  const innIndex = await fetchInnIndex();
+  return <Homepage innIndex={innIndex} />;
 }
 
 function PageSkeleton() {
