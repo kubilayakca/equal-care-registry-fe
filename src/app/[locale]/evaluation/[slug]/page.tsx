@@ -12,14 +12,39 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const t = await getTranslations({ locale });
 
-    const content = await Promise.resolve({
-        data: { header: 'Equalcare Evaluation', description: 'Equalcare Evaluation' },
-    });
+    try {
+        // Fetch the inn_index to find the matching evaluation
+        const innIndex = await fetchInnIndex();
+        const publishedEvaluations = getPublishedEvaluations(innIndex);
 
-    return {
-        title: `${content?.data?.header} - ${t('equalcare')}`,
-        description: content?.data?.description,
-    };
+        // Find the evaluation that matches this slug
+        const evaluation = publishedEvaluations.find(({ inn, brandDoc }) => {
+            const evaluationSlug = generateEvaluationSlug(inn, brandDoc.id);
+            return evaluationSlug === slug;
+        });
+
+        if (!evaluation) {
+            return {
+                title: `${t('equalcare')}`,
+                description: '',
+            };
+        }
+
+        // Fetch the evaluation data from S3
+        const evaluationData = await fetchEvaluation(evaluation.inn, evaluation.brandDoc.id);
+        const { general_info } = evaluationData.evaluation;
+
+        return {
+            title: `${general_info.certification_item} - ${t('equalcare')}`,
+            description: general_info.description || '',
+        };
+    } catch (error) {
+        console.error('Error loading evaluation metadata:', error);
+        return {
+            title: `${t('equalcare')}`,
+            description: '',
+        };
+    }
 }
 
 export default async function EvaluationPage({ params: { locale, slug } }: any) {
