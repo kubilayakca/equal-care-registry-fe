@@ -102,7 +102,10 @@ const Dropdown = ({ value, options, placeholder, onChange, itemKey, disabled }: 
               `border border-green-400 px-5 py-3 rounded body-s-550 text-blue-2 bg-white min-w-[12rem] text-left ${
                 disabled ? 'opacity-50 cursor-not-allowed' : ''
               }`,
-            disabled: disabled,
+            onClick: disabled ? (e: React.MouseEvent<HTMLButtonElement>) => {
+              e.preventDefault();
+              e.stopPropagation();
+            } : undefined,
           }}
           contentProps={{
             style: {
