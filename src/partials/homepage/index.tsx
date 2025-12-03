@@ -236,7 +236,7 @@ const Evaluations = ({ innIndex }: { innIndex: InnIndex }) => {
 
     const queryString = params.toString();
     const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
-    
+
     // Use history.replaceState to update URL without triggering navigation
     window.history.replaceState(null, '', newUrl);
   }, [filters, pathname]);
@@ -402,13 +402,13 @@ const Evaluations = ({ innIndex }: { innIndex: InnIndex }) => {
               filters.therapeuticArea ||
               filters.condition ||
               filters.source) && (
-              <button
-                onClick={handleClearFilters}
-                className='mt-4 text-green-500 body-s-500 hover:underline'
-              >
-                {t('clear_filters') || 'Clear all filters'}
-              </button>
-            )}
+                <button
+                  onClick={handleClearFilters}
+                  className='mt-4 text-green-500 body-s-500 hover:underline'
+                >
+                  {t('clear_filters') || 'Clear all filters'}
+                </button>
+              )}
           </div>
         )}
       </div>
@@ -476,7 +476,7 @@ const EvaluationItemCard = ({
         } as any
       }
       className='bg-white rounded-xl p-4 md:p-6 flex items-center gap-4 md:gap-6 hover:shadow-md transition-shadow border border-transparent hover:border-green-400 block'
-      onClick={(e) => {
+      onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
         // Ensure the link click works properly
         e.stopPropagation();
       }}
@@ -497,9 +497,6 @@ const EvaluationItemCard = ({
         <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4'>
           <div className='flex-1 min-w-0'>
             <div className='text-blue-2 body-l-500 md:heading-05-500 mb-1'>{inn}</div>
-            {brandDoc.brandName && (
-              <div className='text-blue-85 body-m-400 mb-2'>{brandDoc.brandName}</div>
-            )}
             <div className='flex flex-wrap gap-2 pointer-events-none'>
               {brandDoc.therapeuticArea && (
                 <Chip icon='ingredient'>{brandDoc.therapeuticArea}</Chip>
