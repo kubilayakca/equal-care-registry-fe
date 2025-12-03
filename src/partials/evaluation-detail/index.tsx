@@ -17,6 +17,7 @@ import { Icon } from '@/components/icon';
 import { InfoTooltip } from '../info-tooltip';
 import { SectionHeader } from '@/components/section-header';
 import { type EvaluationData } from '@/utils/network/evaluations';
+import { formatInnName } from '@/utils/helpers';
 
 type IndicationValue = {
     column: 'men' | 'women' | 'both';
@@ -250,7 +251,7 @@ export const EvaluationDetail = ({
                         </div>
                         <div className='flex flex-col flex-1'>
                             <div className='flex flex-col gap-3'>
-                                <div className='heading-04-500 text-blue-2'>{general_info.certification_item}</div>
+                                <div className='heading-04-500 text-blue-2'>{formatInnName(general_info.certification_item)}</div>
                                 <div className='body-m-400 text-blue-85'>{general_info.description}</div>
                             </div>
                             <div className='bg-blue-20 mt-6 mb-4 h-px' />

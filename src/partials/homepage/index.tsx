@@ -21,6 +21,7 @@ import {
   type InnIndex,
   type InnIndexBrandDoc,
 } from '@/utils/network/evaluations';
+import { formatInnName } from '@/utils/helpers';
 import {
   SearchInput,
   TherapeuticAreaDropdown,
@@ -284,9 +285,11 @@ const Evaluations = ({ innIndex }: { innIndex: InnIndex }) => {
   const filteredEvaluations = useMemo(() => {
     return publishedEvaluations.filter(({ inn, brandDoc }) => {
       // Search filter (case-insensitive, partial match)
+      // Search both raw INN (with hyphens) and formatted INN (with spaces)
       if (filters.search) {
         const searchLower = filters.search.toLowerCase();
-        if (!inn.toLowerCase().includes(searchLower)) {
+        const formattedInn = formatInnName(inn).toLowerCase();
+        if (!inn.toLowerCase().includes(searchLower) && !formattedInn.includes(searchLower)) {
           return false;
         }
       }
@@ -496,7 +499,7 @@ const EvaluationItemCard = ({
       <div className='flex-1 min-w-0'>
         <div className='flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4'>
           <div className='flex-1 min-w-0'>
-            <div className='text-blue-2 body-l-500 md:heading-05-500 mb-1'>{inn}</div>
+            <div className='text-blue-2 body-l-500 md:heading-05-500 mb-1'>{formatInnName(inn)}</div>
             <div className='flex flex-wrap gap-2 pointer-events-none'>
               {brandDoc.therapeuticArea && (
                 <Chip icon='ingredient'>{brandDoc.therapeuticArea}</Chip>

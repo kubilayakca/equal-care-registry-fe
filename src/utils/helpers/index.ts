@@ -29,3 +29,15 @@ export const toTitleCase = (str: string) => {
     .map((s) => upperfirst(tolower(s)))
     .join(' ');
 };
+
+/**
+ * Formats INN name by replacing hyphens with semicolons and capitalizing the first letter of each word.
+ * Example: "aclidinium-bromide-formoterol" -> "Aclidinium; Bromide; Formoterol"
+ */
+export const formatInnName = (inn: string): string => {
+  return inn
+    .replace(/-/g, ' ')
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('; ');
+};

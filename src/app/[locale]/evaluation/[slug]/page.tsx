@@ -2,6 +2,7 @@ import { Metadata, ResolvingMetadata } from 'next';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import { EvaluationDetail } from '@/partials/evaluation-detail';
 import { fetchInnIndex, fetchEvaluation, getPublishedEvaluations, generateEvaluationSlug } from '@/utils/network/evaluations';
+import { formatInnName } from '@/utils/helpers';
 import { notFound } from 'next/navigation';
 
 export const revalidate = 3600; // Revalidate every hour
@@ -35,7 +36,7 @@ export async function generateMetadata(
         const { general_info } = evaluationData.evaluation;
 
         return {
-            title: `${general_info.certification_item} - ${t('equalcare')}`,
+            title: `${formatInnName(general_info.certification_item)} - ${t('equalcare')}`,
             description: general_info.description || '',
         };
     } catch (error) {
