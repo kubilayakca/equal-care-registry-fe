@@ -162,3 +162,43 @@ export function generateEvaluationSlug(inn: string, id: string): string {
     return `${innSlug}-${id.toLowerCase()}`;
 }
 
+export function getUniqueTherapeuticAreas(innIndex: InnIndex): string[] {
+    const areas = new Set<string>();
+    for (const group of innIndex) {
+        for (const brandDoc of group.brandDocs) {
+            if (brandDoc.evaluation?.published === true && brandDoc.therapeuticArea) {
+                areas.add(brandDoc.therapeuticArea);
+            }
+        }
+    }
+    return Array.from(areas).sort();
+}
+
+export function getConditionsByTherapeuticArea(innIndex: InnIndex, therapeuticArea: string): string[] {
+    const conditions = new Set<string>();
+    for (const group of innIndex) {
+        for (const brandDoc of group.brandDocs) {
+            if (
+                brandDoc.evaluation?.published === true &&
+                brandDoc.therapeuticArea === therapeuticArea &&
+                brandDoc.condition
+            ) {
+                conditions.add(brandDoc.condition);
+            }
+        }
+    }
+    return Array.from(conditions).sort();
+}
+
+export function getUniqueSources(innIndex: InnIndex): string[] {
+    const sources = new Set<string>();
+    for (const group of innIndex) {
+        for (const brandDoc of group.brandDocs) {
+            if (brandDoc.evaluation?.published === true && brandDoc.source) {
+                sources.add(brandDoc.source);
+            }
+        }
+    }
+    return Array.from(sources).sort();
+}
+
