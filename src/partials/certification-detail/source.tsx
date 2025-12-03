@@ -15,27 +15,31 @@ export const Source = ({ source }: { source: { name: string; url: string | null;
                     {source.url && (
                         <>
                             <div className='body-l-500 text-blue-2'>{t('source_url')}:</div>
-                            <NextLink
-                                href={source.url}
-                                target='_blank'
-                                rel='nofollow'
-                                className='body-m-400 text-green-500'
-                            >
-                                {source.url}
-                            </NextLink>
+                            <div className='min-w-0 break-words'>
+                                <NextLink
+                                    href={source.url}
+                                    target='_blank'
+                                    rel='nofollow'
+                                    className='body-m-400 text-green-500 break-words'
+                                >
+                                    {source.url}
+                                </NextLink>
+                            </div>
                         </>
                     )}
                     {source.prevalence_source && (
                         <>
                             <div className='body-l-500 text-blue-2'>{t('prevalence_source')}:</div>
-                            <NextLink
-                                href={source.prevalence_source}
-                                target='_blank'
-                                rel='nofollow'
-                                className='body-m-400 text-green-500'
-                            >
-                                {source.prevalence_source}
-                            </NextLink>
+                            <div className='min-w-0 break-words'>
+                                <NextLink
+                                    href={source.prevalence_source}
+                                    target='_blank'
+                                    rel='nofollow'
+                                    className='body-m-400 text-green-500 break-words'
+                                >
+                                    {source.prevalence_source}
+                                </NextLink>
+                            </div>
                         </>
                     )}
                 </div>
