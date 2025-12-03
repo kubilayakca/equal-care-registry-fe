@@ -16,7 +16,7 @@ import {
 import { Icon } from '@/components/icon';
 import { InfoTooltip } from '../info-tooltip';
 import { SectionHeader } from '@/components/section-header';
-import { type EvaluationData } from '@/utils/network/evaluations';
+import { type EvaluationData, type InnIndexBrandDoc } from '@/utils/network/evaluations';
 import { formatInnName } from '@/utils/helpers';
 
 type IndicationValue = {
@@ -44,9 +44,11 @@ type TransformedIndication = {
 export const EvaluationDetail = ({
     evaluationData,
     slug,
+    brandDoc,
 }: {
     evaluationData: EvaluationData;
     slug: string;
+    brandDoc: InnIndexBrandDoc;
 }) => {
     const { general_info, indications } = evaluationData.evaluation;
     const t = useTranslations();
@@ -229,8 +231,8 @@ export const EvaluationDetail = ({
     });
 
     const sourceData = {
-        name: general_info.source,
-        url: general_info.source_url,
+        name: brandDoc.source,
+        url: brandDoc.sourceUrl || null,
         prevalence_source: indications[0]?.prevalence_source || null,
     };
 
@@ -257,7 +259,7 @@ export const EvaluationDetail = ({
                             <div className='bg-blue-20 mt-6 mb-4 h-px' />
                             <div className='grid grid-cols-[max-content,_auto] md:grid-cols-[minmax(max-content,_auto),_auto] lg:grid-cols-[minmax(12.5rem,_max-content),_auto] gap-5 lg:gap-4'>
                                 <div className='body-l-500 text-blue-2'>{t('source')}:</div>
-                                <div className='text-blue-85 body-m-400'>{general_info.source}</div>
+                                <div className='text-blue-85 body-m-400'>{brandDoc.source}</div>
                                 {general_info.active_ingredient && (
                                     <>
                                         <div className='body-l-500 text-blue-2'>{t('active_ingredients')}:</div>

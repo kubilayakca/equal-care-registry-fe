@@ -71,7 +71,7 @@ export default async function EvaluationPage({ params: { locale, slug } }: any) 
 
         const t = await getTranslations({ locale });
 
-        return <EvaluationDetail evaluationData={evaluationData} slug={slug} />;
+        return <EvaluationDetail evaluationData={evaluationData} slug={slug} brandDoc={evaluation.brandDoc} />;
     } catch (error) {
         console.error('Error loading evaluation:', error);
         return notFound();
