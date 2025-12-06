@@ -199,6 +199,19 @@ export const EvaluationDetail = ({
                     womenValue,
                 ],
             });
+        } else {
+            // No reported sex distribution in clinical study participation
+            indicationRows.push({
+                column: { label: 'clinical_study_participation', tooltip: 'clinical_study_participation_tooltip' },
+                values: [
+                    {
+                        column: 'both' as const,
+                        type: 'text' as const,
+                        content: t('sex_distribution_not_reported'),
+                        align: 'left' as const,
+                    },
+                ],
+            });
         }
 
         // Add text fields
