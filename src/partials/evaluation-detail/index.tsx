@@ -264,7 +264,7 @@ export const EvaluationDetail = ({
                                     <>
                                         <div className='body-l-500 text-blue-2'>{t('active_ingredients')}:</div>
                                         <div className='flex gap-2 flex-wrap'>
-                                            <Chip icon='ingredient'>{general_info.active_ingredient}</Chip>
+                                            <Chip icon='ingredient'>{formatInnName(general_info.active_ingredient)}</Chip>
                                         </div>
                                     </>
                                 )}

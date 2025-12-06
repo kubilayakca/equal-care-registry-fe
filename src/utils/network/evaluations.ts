@@ -127,12 +127,31 @@ export async function fetchInnIndex(): Promise<InnIndex> {
 }
 
 export async function fetchEvaluation(inn: string, id: string): Promise<EvaluationData> {
+    // Normalize INN for S3 path (same as slug generation - convert spaces/special chars to hyphens)
+    const normalizedInn = inn.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    
+    // Try normalized path with uppercase ID first (most common case)
+    const normalizedKeyUpperId = `registry/output/INNs/${normalizedInn}/${id}/evaluation/evaluation.json`;
+    
     try {
-        const key = `registry/output/INNs/${inn}/${id}/evaluation/evaluation.json`;
-        const jsonString = await getObjectFromS3(key);
+        const jsonString = await getObjectFromS3(normalizedKeyUpperId);
         return JSON.parse(jsonString) as EvaluationData;
-    } catch (error) {
-        throw new Error(`Failed to fetch evaluation for ${inn}/${id} from S3: ${error instanceof Error ? error.message : String(error)}`);
+    } catch (upperIdError) {
+        // If that fails, try with lowercase ID (matching slug format)
+        try {
+            const normalizedKeyLowerId = `registry/output/INNs/${normalizedInn}/${id.toLowerCase()}/evaluation/evaluation.json`;
+            const jsonString = await getObjectFromS3(normalizedKeyLowerId);
+            return JSON.parse(jsonString) as EvaluationData;
+        } catch (lowerIdError) {
+            // If normalized paths fail, try with raw INN (preserving spaces)
+            try {
+                const rawKey = `registry/output/INNs/${inn}/${id}/evaluation/evaluation.json`;
+                const jsonString = await getObjectFromS3(rawKey);
+                return JSON.parse(jsonString) as EvaluationData;
+            } catch (rawError) {
+                throw new Error(`Failed to fetch evaluation for ${inn}/${id} from S3. Tried paths: ${normalizedKeyUpperId}, ${normalizedKeyLowerId}, ${rawKey}. Last error: ${rawError instanceof Error ? rawError.message : String(rawError)}`);
+            }
+        }
     }
 }
 
