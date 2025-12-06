@@ -165,6 +165,13 @@ export const EvaluationDetail = ({
         const clinicalStudyMen = parseNumericRange(indication.men.clinical_study_participation);
         const clinicalStudyWomen = parseNumericRange(indication.women.clinical_study_participation);
         if (!areBothValuesZero(clinicalStudyMen, clinicalStudyWomen)) {
+            const menValue: IndicationValue = {
+                column: 'men' as const,
+                type: 'number' as const,
+                value: clinicalStudyMen.value,
+                displayLabel: clinicalStudyMen.label,
+                align: 'right' as const,
+            };
             const womenValue: IndicationValue = {
                 column: 'women' as const,
                 type: 'number' as const,
@@ -174,23 +181,21 @@ export const EvaluationDetail = ({
                 bg: 'dark' as const,
             };
 
-            // Only add representation gap if there's actual data
-            const representationGapValue = parseRepresentationGap(indication.women.representation_gap);
-            if (representationGapValue) {
-                womenValue.representationGap = representationGapValue.value;
-                womenValue.representationGapLabel = representationGapValue.label;
+            // Show representation gap on the side with a negative value
+            const representationGapMen = parseRepresentationGap(indication.men.representation_gap);
+            const representationGapWomen = parseRepresentationGap(indication.women.representation_gap);
+            if (representationGapMen && representationGapMen.value < 0) {
+                menValue.representationGap = representationGapMen.value;
+                menValue.representationGapLabel = representationGapMen.label;
+            } else if (representationGapWomen && representationGapWomen.value < 0) {
+                womenValue.representationGap = representationGapWomen.value;
+                womenValue.representationGapLabel = representationGapWomen.label;
             }
 
             indicationRows.push({
                 column: { label: 'clinical_study_participation', tooltip: 'clinical_study_participation_tooltip' },
                 values: [
-                    {
-                        column: 'men' as const,
-                        type: 'number' as const,
-                        value: clinicalStudyMen.value,
-                        displayLabel: clinicalStudyMen.label,
-                        align: 'right' as const,
-                    },
+                    menValue,
                     womenValue,
                 ],
             });
@@ -214,6 +219,19 @@ export const EvaluationDetail = ({
             values: createTextFieldValues(indication.men.difference_in_possible_side_effects, indication.women.difference_in_possible_side_effects),
         });
 
+        // Add possible_side_effects directly after gender-based side effects
+        indicationRows.push({
+            column: { label: 'possible_side_effects', tooltip: 'possible_side_effects_tooltip' },
+            values: [
+                {
+                    column: 'both' as const,
+                    type: 'text' as const,
+                    content: Array.isArray(indication.possible_side_effects) ? indication.possible_side_effects.join(', ') : '',
+                    align: 'left' as const,
+                },
+            ],
+        });
+
         // Add pregnancy_lactation if not null
         if (indication.men.pregnancy_lactation !== null || indication.women.pregnancy_lactation !== null) {
             indicationRows.push({
@@ -232,19 +250,6 @@ export const EvaluationDetail = ({
                 indication.men.sex_gender_specific_nonclinical_findings,
                 indication.women.sex_gender_specific_nonclinical_findings
             ),
-        });
-
-        // Add possible_side_effects
-        indicationRows.push({
-            column: { label: 'possible_side_effects', tooltip: 'possible_side_effects_tooltip' },
-            values: [
-                {
-                    column: 'both' as const,
-                    type: 'text' as const,
-                    content: Array.isArray(indication.possible_side_effects) ? indication.possible_side_effects.join(', ') : '',
-                    align: 'left' as const,
-                },
-            ],
         });
 
         return {
