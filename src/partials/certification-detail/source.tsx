@@ -1,8 +1,22 @@
 import { useTranslations } from 'next-intl';
 import NextLink from 'next/link';
 
-export const Source = ({ source }: { source: { name: string; url: string | null; prevalence_source?: string | null } }) => {
+type SourceProps = {
+    source: {
+        name: string;
+        url: string | null;
+        prevalence_source?: string | string[] | null;
+    };
+};
+
+export const Source = ({ source }: SourceProps) => {
     const t = useTranslations();
+
+    const prevalenceSources = Array.isArray(source.prevalence_source)
+        ? source.prevalence_source.filter((item) => Boolean(item))
+        : source.prevalence_source
+            ? [source.prevalence_source]
+            : [];
 
     return (
         <div className='bg-white py-8 px-6 rounded-xl grow flex max-lg:flex-col gap-6 lg:gap-10 items-start'>
@@ -27,18 +41,21 @@ export const Source = ({ source }: { source: { name: string; url: string | null;
                             </div>
                         </>
                     )}
-                    {source.prevalence_source && (
+                    {prevalenceSources.length > 0 && (
                         <>
                             <div className='body-l-500 text-blue-2'>{t('prevalence_source')}:</div>
-                            <div className='min-w-0 break-words'>
-                                <NextLink
-                                    href={source.prevalence_source}
-                                    target='_blank'
-                                    rel='nofollow'
-                                    className='body-m-400 text-green-500 break-words'
-                                >
-                                    {source.prevalence_source}
-                                </NextLink>
+                            <div className='min-w-0 break-words flex flex-col gap-2'>
+                                {prevalenceSources.map((item, index) => (
+                                    <NextLink
+                                        key={`${item}-${index}`}
+                                        href={item}
+                                        target='_blank'
+                                        rel='nofollow'
+                                        className='body-m-400 text-green-500 break-words'
+                                    >
+                                        {item}
+                                    </NextLink>
+                                ))}
                             </div>
                         </>
                     )}

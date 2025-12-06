@@ -16,17 +16,19 @@ import {
 import { Icon } from '@/components/icon';
 import { InfoTooltip } from '../info-tooltip';
 import { SectionHeader } from '@/components/section-header';
-import { type EvaluationData, type InnIndexBrandDoc } from '@/utils/network/evaluations';
+import { type EvaluationData, type InnIndexBrandDoc, type NumericRange } from '@/utils/network/evaluations';
 import { formatInnName } from '@/utils/helpers';
 
 type IndicationValue = {
     column: 'men' | 'women' | 'both';
     type: 'text' | 'number';
     value?: number;
+    displayLabel?: string;
     content?: string;
     bg?: 'light' | 'dark';
     align?: 'left' | 'right';
     representationGap?: number;
+    representationGapLabel?: string;
     alignContent?: 'center';
 };
 
@@ -53,23 +55,40 @@ export const EvaluationDetail = ({
     const { general_info, indications } = evaluationData.evaluation;
     const t = useTranslations();
 
-    // Parse percentage strings to numbers for display
-    const parsePercentage = (str: string | null | undefined): number => {
-        if (!str) return 0;
-        const match = str.match(/(\d+\.?\d*)/);
-        return match ? parseFloat(match[1]) : 0;
+    const formatSignedPercent = (value: number) => {
+        if (value === 0) return '0%';
+        return `${value > 0 ? '+' : ''}${value}%`;
     };
 
-    // Parse representation gap string to number (handles negative/positive signs)
-    const parseRepresentationGap = (str: string | null | undefined): number => {
-        if (!str) return 0;
-        // Match optional sign (- or +) followed by number
-        const match = str.match(/([+-]?)(\d+\.?\d*)/);
-        if (match) {
-            const sign = match[1] === '-' ? -1 : 1;
-            return sign * parseFloat(match[2]);
+    // Parse numeric range to a representative number and label
+    const parseNumericRange = (range: NumericRange): { value: number; label: string } => {
+        if (!range) {
+            return { value: 0, label: '0%' };
         }
-        return 0;
+
+        const min = Number.isFinite(range.min) ? range.min : 0;
+        const max = Number.isFinite(range.max) ? range.max : min;
+        const value = Math.max(min, max);
+        const label = min === max ? `${min}%` : `${min}-${max}%`;
+
+        return { value, label };
+    };
+
+    // Parse representation gap range to value/label pair
+    const parseRepresentationGap = (range: NumericRange): { value: number; label: string } | null => {
+        if (!range) return null;
+
+        const min = Number.isFinite(range.min) ? range.min : 0;
+        const max = Number.isFinite(range.max) ? range.max : min;
+        const hasData = Math.abs(min) > 0 || Math.abs(max) > 0;
+        if (!hasData) return null;
+
+        const magnitude = Math.abs(max) >= Math.abs(min) ? max : min;
+        const label = min === max
+            ? formatSignedPercent(min)
+            : `${formatSignedPercent(min)} to ${formatSignedPercent(max)}`;
+
+        return { value: magnitude, label };
     };
 
     // Helper function to create text field values - combines columns if values are the same
@@ -108,8 +127,8 @@ export const EvaluationDetail = ({
     };
 
     // Helper function to check if both number values are zero
-    const areBothValuesZero = (menValue: number, womenValue: number): boolean => {
-        return menValue === 0 && womenValue === 0;
+    const areBothValuesZero = (menValue: { value: number }, womenValue: { value: number }): boolean => {
+        return menValue.value === 0 && womenValue.value === 0;
     };
 
     // Transform indication data to match Details component format
@@ -117,8 +136,8 @@ export const EvaluationDetail = ({
         const indicationRows: IndicationRow[] = [];
 
         // Gender Distribution - only add if not both zero
-        const genderDistMen = parsePercentage(indication.men.gender_distribution);
-        const genderDistWomen = parsePercentage(indication.women.gender_distribution);
+        const genderDistMen = parseNumericRange(indication.men.gender_distribution);
+        const genderDistWomen = parseNumericRange(indication.women.gender_distribution);
         if (!areBothValuesZero(genderDistMen, genderDistWomen)) {
             indicationRows.push({
                 column: { label: 'gender_distribution', tooltip: 'gender_distribution_tooltip' },
@@ -126,13 +145,15 @@ export const EvaluationDetail = ({
                     {
                         column: 'men' as const,
                         type: 'number' as const,
-                        value: genderDistMen,
+                        value: genderDistMen.value,
+                        displayLabel: genderDistMen.label,
                         align: 'right' as const,
                     },
                     {
                         column: 'women' as const,
                         type: 'number' as const,
-                        value: genderDistWomen,
+                        value: genderDistWomen.value,
+                        displayLabel: genderDistWomen.label,
                         align: 'left' as const,
                         bg: 'dark' as const,
                     },
@@ -141,21 +162,23 @@ export const EvaluationDetail = ({
         }
 
         // Clinical Study Participation - only add if not both zero
-        const clinicalStudyMen = parsePercentage(indication.men.clinical_study_participation);
-        const clinicalStudyWomen = parsePercentage(indication.women.clinical_study_participation);
+        const clinicalStudyMen = parseNumericRange(indication.men.clinical_study_participation);
+        const clinicalStudyWomen = parseNumericRange(indication.women.clinical_study_participation);
         if (!areBothValuesZero(clinicalStudyMen, clinicalStudyWomen)) {
             const womenValue: IndicationValue = {
                 column: 'women' as const,
                 type: 'number' as const,
-                value: clinicalStudyWomen,
+                value: clinicalStudyWomen.value,
+                displayLabel: clinicalStudyWomen.label,
                 align: 'left' as const,
                 bg: 'dark' as const,
             };
 
             // Only add representation gap if there's actual data
             const representationGapValue = parseRepresentationGap(indication.women.representation_gap);
-            if (indication.women.representation_gap && representationGapValue !== 0) {
-                womenValue.representationGap = representationGapValue;
+            if (representationGapValue) {
+                womenValue.representationGap = representationGapValue.value;
+                womenValue.representationGapLabel = representationGapValue.label;
             }
 
             indicationRows.push({
@@ -164,7 +187,8 @@ export const EvaluationDetail = ({
                     {
                         column: 'men' as const,
                         type: 'number' as const,
-                        value: clinicalStudyMen,
+                        value: clinicalStudyMen.value,
+                        displayLabel: clinicalStudyMen.label,
                         align: 'right' as const,
                     },
                     womenValue,
@@ -217,7 +241,7 @@ export const EvaluationDetail = ({
                 {
                     column: 'both' as const,
                     type: 'text' as const,
-                    content: indication.possible_side_effects.join(', '),
+                    content: Array.isArray(indication.possible_side_effects) ? indication.possible_side_effects.join(', ') : '',
                     align: 'left' as const,
                 },
             ],
@@ -233,7 +257,7 @@ export const EvaluationDetail = ({
     const sourceData = {
         name: brandDoc.source,
         url: brandDoc.sourceUrl || null,
-        prevalence_source: indications[0]?.prevalence_source || null,
+        prevalence_source: indications[0]?.prevalence_source || [],
     };
 
     return (
@@ -366,19 +390,23 @@ const IndicationValue = ({
     type = 'text',
     content,
     value,
+    displayLabel,
     bg = 'light',
     align = 'left',
     column,
     representationGap,
+    representationGapLabel,
     alignContent,
 }: {
     type?: 'text' | 'number';
     content?: string;
     value?: number;
+    displayLabel?: string;
     bg?: 'light' | 'dark';
     align?: 'left' | 'right';
     column: 'men' | 'women' | 'both';
     representationGap?: number;
+    representationGapLabel?: string;
     alignContent?: 'center';
 }) => {
     const t = useTranslations();
@@ -398,7 +426,7 @@ const IndicationValue = ({
           ${alignContent === 'center' ? 'justify-center' : ''}  
         `}
             >
-                {type === 'number' && value && (
+                {type === 'number' && value !== undefined && value !== null && (
                     <div className='w-full'>
                         <div className='w-full'>
                             <div
@@ -409,7 +437,7 @@ const IndicationValue = ({
                                     minWidth: '3rem',
                                 }}
                             >
-                                {value}%
+                                {displayLabel ?? `${value}%`}
                             </div>
                             {representationGap !== undefined && representationGap !== null && representationGap !== 0 && (
                                 <div className={`flex ${align === 'left' ? 'lg:flex-row-reverse' : ''}`}>
@@ -428,7 +456,7 @@ const IndicationValue = ({
                                             minWidth: '2rem',
                                         }}
                                     >
-                                        {representationGap}%
+                                        {representationGapLabel ?? `${representationGap}%`}
                                     </div>
                                 </div>
                             )}
