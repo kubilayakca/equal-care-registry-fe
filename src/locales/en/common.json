@@ -93,7 +93,7 @@
   "gender_distribution_tooltip": "Sex distribution of population",
   "clinical_study_participation": "Clinical Study Participation",
   "clinical_study_participation_tooltip": "Clinical Study Participation",
-  "sex_distribution_not_reported": "Sex distribution was not reported in the source documentation",
+  "sex_distribution_not_reported": "Sex distribution was not reported in the source documentation.",
   "study_participation": "Study Participation",
   "study_participation_tooltip": "Study Participation",
   "initial_study_participation": "Initial Study Participation",
