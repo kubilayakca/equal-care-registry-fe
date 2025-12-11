@@ -159,6 +159,18 @@ export const EvaluationDetail = ({
                     },
                 ],
             });
+        } else {
+             indicationRows.push({
+                column: { label: 'gender_distribution', tooltip: 'gender_distribution_tooltip' },
+                values: [
+                    {
+                        column: 'both' as const,
+                        type: 'text' as const,
+                        content: t('na_short'),
+                        align: 'left' as const,
+                    },
+                ],
+            });
         }
 
         // Clinical Study Participation - only add if not both zero
@@ -207,7 +219,7 @@ export const EvaluationDetail = ({
                     {
                         column: 'both' as const,
                         type: 'text' as const,
-                        content: t('sex_distribution_not_reported'),
+                        content: t('not_reported_in_available_sources'),
                         align: 'left' as const,
                     },
                 ],
@@ -217,19 +229,31 @@ export const EvaluationDetail = ({
         // Add text fields
         indicationRows.push({
             column: { label: 'efficacy/accuracy', tooltip: 'efficacy/accuracy_tooltip' },
-            values: createTextFieldValues(indication.men.efficacy, indication.women.efficacy),
+            values: createTextFieldValues(
+                indication.men.efficacy || t('no_efficacy_data_relevant'),
+                indication.women.efficacy || t('no_efficacy_data_relevant')
+            ),
         });
         indicationRows.push({
             column: { label: 'posology', tooltip: 'posology_tooltip' },
-            values: createTextFieldValues(indication.men.posology, indication.women.posology),
+            values: createTextFieldValues(
+                indication.men.posology || t('no_detailed_dosing_info'), 
+                indication.women.posology || t('no_detailed_dosing_info')
+            ),
         });
         indicationRows.push({
             column: { label: 'dose_adjustments', tooltip: 'dose_adjustments_tooltip' },
-            values: createTextFieldValues(indication.men.dose_adjustments, indication.women.dose_adjustments),
+            values: createTextFieldValues(
+                indication.men.dose_adjustments || t('no_dose_adjustments_info'), 
+                indication.women.dose_adjustments || t('no_dose_adjustments_info')
+            ),
         });
         indicationRows.push({
             column: { label: 'difference_in_possible_side_effects', tooltip: 'difference_in_possible_side_effects_tooltip' },
-            values: createTextFieldValues(indication.men.difference_in_possible_side_effects, indication.women.difference_in_possible_side_effects),
+            values: createTextFieldValues(
+                indication.men.difference_in_possible_side_effects || t('no_sex_specific_adverse_reactions'), 
+                indication.women.difference_in_possible_side_effects || t('no_sex_specific_adverse_reactions')
+            ),
         });
 
         // Add possible_side_effects directly after gender-based side effects
@@ -239,29 +263,29 @@ export const EvaluationDetail = ({
                 {
                     column: 'both' as const,
                     type: 'text' as const,
-                    content: Array.isArray(indication.possible_side_effects) ? indication.possible_side_effects.join(', ') : '',
+                    content: (Array.isArray(indication.possible_side_effects) && indication.possible_side_effects.length > 0)
+                        ? indication.possible_side_effects.join(', ')
+                        : t('na_short'),
                     align: 'left' as const,
                 },
             ],
         });
 
-        // Add pregnancy_lactation if not null
-        if (indication.men.pregnancy_lactation !== null || indication.women.pregnancy_lactation !== null) {
-            indicationRows.push({
-                column: { label: 'pregnancy_lactation', tooltip: 'pregnancy_lactation_tooltip' },
-                values: createTextFieldValues(
-                    indication.men.pregnancy_lactation || 'Not applicable',
-                    indication.women.pregnancy_lactation || 'Not applicable'
-                ),
-            });
-        }
+        // Add pregnancy_lactation - Always add with default if null
+        indicationRows.push({
+            column: { label: 'pregnancy_lactation', tooltip: 'pregnancy_lactation_tooltip' },
+            values: createTextFieldValues(
+                indication.men.pregnancy_lactation || t('no_pregnancy_lactation_data'),
+                indication.women.pregnancy_lactation || t('no_pregnancy_lactation_data')
+            ),
+        });
 
         // Add sex_gender_specific_nonclinical_findings
         indicationRows.push({
             column: { label: 'sex_gender_specific_nonclinical_findings', tooltip: 'sex_gender_specific_nonclinical_findings_tooltip' },
             values: createTextFieldValues(
-                indication.men.sex_gender_specific_nonclinical_findings,
-                indication.women.sex_gender_specific_nonclinical_findings
+                indication.men.sex_gender_specific_nonclinical_findings || t('no_clinical_data_relevant'),
+                indication.women.sex_gender_specific_nonclinical_findings || t('no_clinical_data_relevant')
             ),
         });
 

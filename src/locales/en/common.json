@@ -167,6 +167,14 @@
   "page_ai_supported_diagnostic_treatment_description": "",
   "page_femaletech_title": "Registry",
   "page_femaletech_description": "",
+  "not_reported_in_available_sources": "Not reported in available sources.",
+  "no_efficacy_data_relevant": "No efficacy data relevant to sex or gender were identified in the available sources.",
+  "no_detailed_dosing_info": "No detailed dosing information was available in the evaluated sources. Please refer to the official prescribing information.",
+  "no_dose_adjustments_info": "No information on dose adjustments by sex, gender, or other subgroups was reported in the available sources.",
+  "no_sex_specific_adverse_reactions": "No sex-specific differences in adverse reactions were identified in the available sources.",
+  "no_pregnancy_lactation_data": "No data on use in pregnancy or lactation were identified in the available sources. Decisions on treatment should follow official prescribing information and clinical guidelines.",
+  "no_clinical_data_relevant": "No clinical data relevant to sex or gender were available in the evaluated sources.",
+  "na_short": "n/a",
   "page_maletech_title": "Registry",
   "page_maletech_description": ""
 }
