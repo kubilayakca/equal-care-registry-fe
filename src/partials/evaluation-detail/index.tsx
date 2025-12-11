@@ -160,7 +160,7 @@ export const EvaluationDetail = ({
                 ],
             });
         } else {
-             indicationRows.push({
+            indicationRows.push({
                 column: { label: 'gender_distribution', tooltip: 'gender_distribution_tooltip' },
                 values: [
                     {
@@ -237,21 +237,21 @@ export const EvaluationDetail = ({
         indicationRows.push({
             column: { label: 'posology', tooltip: 'posology_tooltip' },
             values: createTextFieldValues(
-                indication.men.posology || t('no_detailed_dosing_info'), 
+                indication.men.posology || t('no_detailed_dosing_info'),
                 indication.women.posology || t('no_detailed_dosing_info')
             ),
         });
         indicationRows.push({
             column: { label: 'dose_adjustments', tooltip: 'dose_adjustments_tooltip' },
             values: createTextFieldValues(
-                indication.men.dose_adjustments || t('no_dose_adjustments_info'), 
+                indication.men.dose_adjustments || t('no_dose_adjustments_info'),
                 indication.women.dose_adjustments || t('no_dose_adjustments_info')
             ),
         });
         indicationRows.push({
             column: { label: 'difference_in_possible_side_effects', tooltip: 'difference_in_possible_side_effects_tooltip' },
             values: createTextFieldValues(
-                indication.men.difference_in_possible_side_effects || t('no_sex_specific_adverse_reactions'), 
+                indication.men.difference_in_possible_side_effects || t('no_sex_specific_adverse_reactions'),
                 indication.women.difference_in_possible_side_effects || t('no_sex_specific_adverse_reactions')
             ),
         });
@@ -275,7 +275,7 @@ export const EvaluationDetail = ({
         indicationRows.push({
             column: { label: 'pregnancy_lactation', tooltip: 'pregnancy_lactation_tooltip' },
             values: createTextFieldValues(
-                indication.men.pregnancy_lactation || t('no_pregnancy_lactation_data'),
+                t('not_applicable'),
                 indication.women.pregnancy_lactation || t('no_pregnancy_lactation_data')
             ),
         });

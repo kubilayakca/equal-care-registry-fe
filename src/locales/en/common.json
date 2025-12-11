@@ -175,6 +175,7 @@
   "no_pregnancy_lactation_data": "No data on use in pregnancy or lactation were identified in the available sources. Decisions on treatment should follow official prescribing information and clinical guidelines.",
   "no_clinical_data_relevant": "No clinical data relevant to sex or gender were available in the evaluated sources.",
   "na_short": "n/a",
+  "not_applicable": "Not Applicable",
   "page_maletech_title": "Registry",
   "page_maletech_description": ""
 }
