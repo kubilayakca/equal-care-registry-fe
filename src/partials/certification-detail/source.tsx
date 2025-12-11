@@ -24,7 +24,7 @@ export const Source = ({ source }: SourceProps) => {
                 <div className='heading-05-500 text-blue-2'>{t('source')}</div>
                 <div className='my-5 h-px bg-gray-50' />
                 <div className='grid grid-cols-[max-content,_auto] md:grid-cols-[minmax(max-content,_auto),_auto] lg:grid-cols-[minmax(12.5rem,_max-content),_auto] gap-5 lg:gap-4'>
-                    <div className='body-l-500 text-blue-2'>{t('source_name')}:</div>
+                    <div className='body-l-500 text-blue-2'>{t('source')}:</div>
                     <div className='body-m-400 text-blue-85'>{source.name}</div>
                     {source.url && (
                         <>
