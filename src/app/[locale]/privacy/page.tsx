@@ -47,14 +47,14 @@ export default async function PrivacyPage() {
                         or change your consent at any time by:
                     </p>
                     <ul className="list-disc pl-6 text-gray-700 mb-4">
-                        <li>Clearing your browser's stored site data</li>
+                        <li>Clearing your browser&apos;s stored site data</li>
                         <li>Adjusting your browser settings to block cookies</li>
-                        <li>Refreshing the page to see the consent banner again (if you've cleared your choice)</li>
+                        <li>Refreshing the page to see the consent banner again (if you&apos;ve cleared your choice)</li>
                     </ul>
                 </section>
 
                 <section className="mb-8">
-                    <h2 className="text-2xl font-semibold mb-4">Google's Privacy Policy</h2>
+                    <h2 className="text-2xl font-semibold mb-4">Google&apos;s Privacy Policy</h2>
                     <p className="text-gray-700 leading-relaxed mb-4">
                         For more information about how Google processes data, please see:{' '}
                         <a
