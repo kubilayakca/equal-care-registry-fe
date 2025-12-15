@@ -5,6 +5,9 @@ import '../globals.css';
 
 import { HeaderWrapper } from '@/partials/header';
 import { FooterWrapper } from '@/partials/footer';
+import GaPageView from './GaPageView';
+import GaScripts from './GaScripts';
+import CookieBanner from '@/components/CookieBanner';
 
 import { getTranslations } from 'next-intl/server';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
@@ -32,7 +35,9 @@ export async function generateMetadata(
   return {
     title: `${t('page_home_title')} - ${t('equalcare')}`,
     description: t('page_home_description'),
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || ''),
+    metadataBase: process.env.NEXT_PUBLIC_SITE_URL
+      ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+      : undefined,
     openGraph: {
       images: ['/equalcare-rich-link-preview.png'],
     },
@@ -56,6 +61,7 @@ export default function RootLayout({
   unstable_setRequestLocale(locale);
 
   const messages = useMessages();
+  const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
     <html
@@ -74,6 +80,8 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <GaScripts gaId={GA_ID} />
+        <GaPageView gaId={GA_ID} />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <main className='min-h-screen flex flex-col'>
             <HeaderWrapper />
@@ -82,6 +90,7 @@ export default function RootLayout({
           </main>
           {modal}
         </NextIntlClientProvider>
+        <CookieBanner />
       </body>
     </html>
   );
